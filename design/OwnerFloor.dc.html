@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Owner app — Floor plan and pricing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column">
+  <div style="padding: 52px 20px 14px; display: flex; align-items: center; gap: 12px">
+    <a href="OwnerApp.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+    <div style="flex: 1; display: flex; flex-direction: column"><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #5E5D58">44 Toronto · Sat Nov 28</span><h1 style="margin: 0; font: 800 26px Archivo, sans-serif; letter-spacing: -0.03em">Floor &amp; pricing</h1></div>
+  </div>
+
+  <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="position: relative; height: 300px; border-radius: 24px; background: #111111; overflow: hidden">
+      <div style="position: absolute; top: 12px; left: 100px; right: 100px; height: 36px; border-radius: 12px; background: #2A2A28; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 600 11px 'Instrument Sans', sans-serif; letter-spacing: 0.12em">DJ STAGE</div>
+      <div style="position: absolute; top: 64px; left: 92px; right: 92px; height: 130px; border-radius: 18px; border: 1.5px dashed #3A3A36; display: flex; align-items: center; justify-content: center; font: 600 11px 'Instrument Sans', sans-serif; letter-spacing: 0.12em; color: #8A887F">DANCE FLOOR</div>
+      <div style="position: absolute; top: 64px; right: 12px; bottom: 64px; width: 26px; border-radius: 10px; background: #2A2A28"></div>
+      <sc-for list="{{tables}}" as="t" hint-placeholder-count="8">
+        <button onClick="{{t.pick}}" aria-label="{{t.aria}}" style="position: absolute; left: {{t.x}}; top: {{t.y}}; width: 60px; height: 44px; border-radius: 14px; border: {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; cursor: pointer; padding: 0">
+          <span style="font: 700 13px Archivo, sans-serif">{{t.id}}</span><span style="font: 500 10px 'Instrument Sans', sans-serif">{{t.cap}}</span>
+        </button>
+      </sc-for>
+      <span style="position: absolute; bottom: 12px; left: 0; right: 0; text-align: center; font: 500 11px 'Instrument Sans', sans-serif; color: #8A887F">Drag tables to move · tap to edit</span>
+    </div>
+    <button style="height: 44px; border-radius: 16px; border: 1.5px dashed #B5B2A8; background: transparent; font: 600 14px 'Instrument Sans', sans-serif; color: #111111">+ Add table</button>
+
+    <section style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font: 700 18px Archivo, sans-serif">{{selName}}</h2><span style="height: 26px; padding: 0 10px; border-radius: 999px; background: #F3F2EE; display: flex; align-items: center; font: 600 11px 'Instrument Sans', sans-serif">{{selKind}}</span></div>
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <span style="display: flex; flex-direction: column"><span style="font: 600 14px 'Instrument Sans', sans-serif">Max guests</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">Shown to customers</span></span>
+        <div style="display: flex; align-items: center; gap: 12px"><button onClick="{{capLess}}" aria-label="Fewer guests" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid #E4E2DC; background: #FFFFFF; font: 500 18px 'Instrument Sans', sans-serif; color: #111111">−</button><span style="min-width: 24px; text-align: center; font: 800 18px Archivo, sans-serif">{{cap}}</span><button onClick="{{capMore}}" aria-label="More guests" style="width: 40px; height: 40px; border-radius: 50%; border: 0; background: #111111; color: #FFFFFF; font: 500 18px 'Instrument Sans', sans-serif">+</button></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <span style="display: flex; flex-direction: column"><span style="font: 600 14px 'Instrument Sans', sans-serif">Minimum spend</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">Floor for offers: {{floor}}</span></span>
+        <div style="display: flex; align-items: center; gap: 12px"><button onClick="{{minLess}}" aria-label="Lower minimum" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid #E4E2DC; background: #FFFFFF; font: 500 18px 'Instrument Sans', sans-serif; color: #111111">−</button><span style="min-width: 64px; text-align: center; font: 800 18px Archivo, sans-serif">{{min}}</span><button onClick="{{minMore}}" aria-label="Raise minimum" style="width: 40px; height: 40px; border-radius: 50%; border: 0; background: #111111; color: #FFFFFF; font: 500 18px 'Instrument Sans', sans-serif">+</button></div>
+      </div>
+      <div style="display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: #F3F2EE">
+        <sc-for list="{{statuses}}" as="s" hint-placeholder-count="3">
+          <button onClick="{{s.pick}}" style="flex: 1; height: 38px; border-radius: 999px; border: 0; background: {{s.bg}}; box-shadow: {{s.shadow}}; font: 600 13px 'Instrument Sans', sans-serif; color: #111111; cursor: pointer">{{s.label}}</button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font: 700 18px Archivo, sans-serif">Automatic pricing</h2><a href="OwnerPricing.dc.html" style="height: 32px; padding: 0 12px; border-radius: 999px; background: #C8FF3D; display: flex; align-items: center; font: 600 12px 'Instrument Sans', sans-serif">5 suggestions ›</a></div>
+      <sc-for list="{{rules}}" as="r" hint-placeholder-count="3">
+        <button onClick="{{r.toggle}}" role="switch" aria-checked="{{r.checked}}" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; border: 1px solid #E4E2DC; background: #FFFFFF; text-align: left; cursor: pointer; color: #111111">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px 'Instrument Sans', sans-serif">{{r.title}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{r.desc}}</span></span>
+          <span style="width: 46px; height: 28px; border-radius: 999px; background: {{r.track}}; position: relative; flex-shrink: 0"><span style="position: absolute; top: 3px; left: {{r.knob}}; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF"></span></span>
+        </button>
+      </sc-for>
+    </section>
+  </div>
+  <div style="padding: 16px 16px 30px">
+    <button style="width: 100%; height: 56px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font: 600 16px 'Instrument Sans', sans-serif">Publish changes</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1140}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sel: 'V2',
+      t: {
+        B1: { cap: 6, min: 900, st: 'open' }, B2: { cap: 6, min: 900, st: 'open' }, B3: { cap: 6, min: 900, st: 'open' }, B4: { cap: 6, min: 900, st: 'held' },
+        V1: { cap: 10, min: 2000, st: 'open' }, V2: { cap: 10, min: 2000, st: 'open' }, V3: { cap: 10, min: 2000, st: 'open' }, D1: { cap: 12, min: 4000, st: 'blocked' }
+      },
+      rules: { surge: true, late: true, floor: true }
+    };
+  }
+  renderVals() {
+    const pos = { B1: [14, 64], B2: [14, 114], B3: [14, 164], B4: [14, 214], V1: [92, 206], V2: [160, 206], V3: [228, 206], D1: [266, 8] };
+    const kind = (id) => id[0] === 'B' ? 'Booth' : id[0] === 'V' ? 'Main VIP' : 'DJ side';
+    const fmt = (n) => '$' + n.toLocaleString('en-US');
+    const T = this.state.t;
+    const sel = this.state.sel;
+    const cur = T[sel];
+    const upd = (patch) => this.setState({ t: Object.assign({}, T, { [sel]: Object.assign({}, cur, patch) }) });
+    const rules = [
+      ['surge', 'Busy night boost', 'When 70% of tables are booked, raise open minimums 10%'],
+      ['late', 'Late-night drop', 'After 11:30pm, unsold booths drop 15%'],
+      ['floor', 'Protect the floor', 'Offers below 88% of the minimum need your OK']
+    ];
+    const R = this.state.rules;
+    return {
+      tables: Object.keys(pos).map((id) => {
+        const on = id === sel;
+        const s = T[id].st;
+        return {
+          id: id, x: pos[id][0] + 'px', y: pos[id][1] + 'px', cap: s === 'blocked' ? 'Blocked' : 'up to ' + T[id].cap,
+          aria: 'Edit ' + id,
+          border: on ? '2px solid #C8FF3D' : s === 'blocked' ? '1px dashed #5E5D58' : '1.5px solid #FFFFFF',
+          bg: on ? '#C8FF3D' : s === 'held' ? '#2A2A28' : '#111111',
+          fg: on ? '#111111' : s === 'blocked' ? '#8A887F' : '#FFFFFF',
+          pick: () => this.setState({ sel: id })
+        };
+      }),
+      selName: 'Table ' + sel, selKind: kind(sel),
+      cap: cur.cap, min: fmt(cur.min), floor: fmt(Math.round(cur.min * 0.88 / 50) * 50),
+      capLess: () => upd({ cap: Math.max(2, cur.cap - 1) }), capMore: () => upd({ cap: Math.min(20, cur.cap + 1) }),
+      minLess: () => upd({ min: Math.max(300, cur.min - 100) }), minMore: () => upd({ min: cur.min + 100 }),
+      statuses: [['open', 'Open'], ['held', 'Held'], ['blocked', 'Blocked']].map(([id, label]) => ({ label: label, bg: cur.st === id ? '#FFFFFF' : 'transparent', shadow: cur.st === id ? '0 2px 8px rgba(0,0,0,0.08)' : 'none', pick: () => upd({ st: id }) })),
+      rules: rules.map(([id, title, desc]) => ({ title: title, desc: desc, checked: R[id] ? 'true' : 'false', track: R[id] ? '#111111' : '#D9D6CC', knob: R[id] ? '21px' : '3px', toggle: () => this.setState({ rules: Object.assign({}, R, { [id]: !R[id] }) }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

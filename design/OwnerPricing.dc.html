@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Owner app — Pricing suggestions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column; padding-bottom: 30px">
+  <div style="padding: 52px 20px 16px; background: #111111; color: #FFFFFF; border-radius: 0 0 28px 28px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <a href="OwnerFloor.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #2A2A28; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+      <span style="display: flex; flex-direction: column"><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #CFCDC6">44 Toronto · next 6 weeks</span><span style="font: 800 24px Archivo, sans-serif; letter-spacing: -0.03em">Pricing suggestions</span></span>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end">
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font: 800 34px/1 Archivo, sans-serif; letter-spacing: -0.04em">{{upside}}</span><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #CFCDC6">extra table revenue if you accept</span></span>
+      <span style="font: 600 12px 'Instrument Sans', sans-serif; color: #C8FF3D">{{acceptedLabel}}</span>
+    </div>
+    <span style="font: 400 12px/1.4 'Instrument Sans', sans-serif; color: #CFCDC6">Based on how fast past nights sold out, special dates, events in your room and demand on Booth.</span>
+  </div>
+
+  <div style="padding: 16px 16px 0; display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{cards}}" as="c" hint-placeholder-count="5">
+      <div style="padding: 16px; border-radius: 22px; background: #FFFFFF; border: {{c.border}}; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+          <span style="display: flex; flex-direction: column; gap: 2px"><span style="font: 700 16px Archivo, sans-serif">{{c.night}}</span><span style="font: 500 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{c.date}}</span></span>
+          <span style="height: 26px; padding: 0 10px; border-radius: 999px; background: {{c.tagBg}}; color: {{c.tagFg}}; display: flex; align-items: center; font: 700 11px 'Instrument Sans', sans-serif; white-space: nowrap">{{c.tag}}</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; font: 600 15px 'Instrument Sans', sans-serif"><span style="color: #5E5D58; text-decoration: line-through">{{c.from}}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span style="font: 800 20px Archivo, sans-serif">{{c.to}}</span><span style="font: 500 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{c.what}}</span></div>
+        <span style="font: 400 13px/1.4 'Instrument Sans', sans-serif; color: #333331">{{c.why}}</span>
+        <sc-if value="{{c.open}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; gap: 8px">
+            <button onClick="{{c.dismiss}}" style="flex: 1; height: 40px; border-radius: 999px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #111111; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">Not now</button>
+            <button onClick="{{c.accept}}" style="flex: 1; height: 40px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">Apply</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{c.done}}" hint-placeholder-val="{{ false }}"><span style="font: 600 13px 'Instrument Sans', sans-serif">{{c.doneText}}</span></sc-if>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1420}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { s: {} };
+  }
+  renderVals() {
+    const list = [
+      { id: 'nye', night: "New Year's Eve", date: 'Thu Dec 31 · 34 days out', tag: 'SPECIAL DATE', from: '$2,000', to: '$3,500', what: 'Main VIP', gain: 4500, why: 'Last NYE every table sold 19 days ahead and 140 people joined the waitlist. Add a 2-bottle minimum and a midnight toast package.' },
+      { id: 'wf', night: 'Winter Formal', date: 'Fri Dec 4 · event night', tag: 'EVENT', from: '$800', to: '$900', what: 'Booth floor', gain: 400, why: '64 people interested already, 3× a normal Friday. Raise the host floor so student pricing stays fair but not underpriced.' },
+      { id: 'sat', night: 'Saturdays in December', date: 'Dec 12, 19, 26', tag: 'TREND', from: '$2,000', to: '$2,200', what: 'Main VIP', gain: 1800, why: 'Your last 4 Saturdays sold out by Thursday. Holiday party season pushes demand up again.' },
+      { id: 'boxing', night: 'Boxing Day', date: 'Sat Dec 26', tag: 'SPECIAL DATE', from: '$900', to: '$1,100', what: 'Booth', gain: 800, why: 'Holiday Saturdays book 30% faster across King West clubs on Booth.' },
+      { id: 'hal', night: 'Halloween recap', date: 'Sat Oct 31 · past', tag: 'LOOK BACK', from: '$2,000', to: '$2,450', what: 'should have been', gain: 0, why: 'Sold out 9 days early with 88 on the waitlist. You likely left about $3,600 on the table. Next Halloween is pre-set +20%.' }
+    ];
+    const S = this.state.s;
+    const accepted = list.filter((c) => S[c.id] === 'ok');
+    const total = list.reduce((a, c) => a + (S[c.id] === 'no' ? 0 : c.gain), 0);
+    return {
+      upside: '+$' + total.toLocaleString('en-US'),
+      acceptedLabel: accepted.length + ' of 4 applied',
+      cards: list.map((c) => {
+        const st = S[c.id];
+        const past = c.id === 'hal';
+        return {
+          night: c.night, date: c.date, tag: c.tag, from: c.from, to: c.to, what: c.what, why: c.why,
+          tagBg: c.tag === 'SPECIAL DATE' ? '#C8FF3D' : c.tag === 'LOOK BACK' ? '#EEECE6' : '#111111',
+          tagFg: c.tag === 'SPECIAL DATE' || c.tag === 'LOOK BACK' ? '#111111' : '#FFFFFF',
+          border: st === 'ok' ? '2px solid #111111' : '2px solid transparent',
+          open: !st && !past, done: !!st || past,
+          doneText: past ? 'Saved as a rule for next Halloween' : st === 'ok' ? 'Applied · customers see the new price now' : 'Dismissed',
+          accept: () => this.setState({ s: Object.assign({}, S, { [c.id]: 'ok' }) }),
+          dismiss: () => this.setState({ s: Object.assign({}, S, { [c.id]: 'no' }) })
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

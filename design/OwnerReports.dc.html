@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Owner app — Reports</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 12px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <a href="OwnerApp.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+      <h1 style="margin: 0; font: 800 26px Archivo, sans-serif; letter-spacing: -0.03em">Reports</h1>
+    </div>
+    <div style="display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: #E4E2DC">
+      <sc-for list="{{periods}}" as="p" hint-placeholder-count="3">
+        <button onClick="{{p.pick}}" style="flex: 1; height: 38px; border-radius: 999px; border: 0; background: {{p.bg}}; box-shadow: {{p.shadow}}; font: 600 13px 'Instrument Sans', sans-serif; color: #111111; cursor: pointer">{{p.label}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="flex: 1; padding: 0 16px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+    <div style="padding: 16px; border-radius: 22px; background: #111111; color: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end">
+        <span style="display: flex; flex-direction: column; gap: 2px"><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #CFCDC6">Table revenue</span><span style="font: 800 36px/1 Archivo, sans-serif; letter-spacing: -0.04em">{{revenue}}</span></span>
+        <span style="height: 26px; padding: 0 10px; border-radius: 999px; background: #C8FF3D; color: #111111; display: flex; align-items: center; font: 600 11px 'Instrument Sans', sans-serif">{{delta}}</span>
+      </div>
+      <div style="height: 120px; display: flex; align-items: flex-end; gap: 8px">
+        <sc-for list="{{bars}}" as="b" hint-placeholder-count="6">
+          <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end">
+            <div style="width: 100%; height: {{b.h}}; border-radius: 8px 8px 3px 3px; background: {{b.color}}"></div>
+            <span style="font: 500 11px 'Instrument Sans', sans-serif; color: #CFCDC6">{{b.label}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <div style="padding: 12px; border-radius: 18px; background: #FFFFFF; display: flex; flex-direction: column; gap: 2px"><span style="font: 800 22px Archivo, sans-serif">{{vsList}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">avg price vs list</span></div>
+      <div style="padding: 12px; border-radius: 18px; background: #FFFFFF; display: flex; flex-direction: column; gap: 2px"><span style="font: 800 22px Archivo, sans-serif">{{noShow}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">no-show rate</span></div>
+      <div style="padding: 12px; border-radius: 18px; background: #FFFFFF; display: flex; flex-direction: column; gap: 2px"><span style="font: 800 22px Archivo, sans-serif">{{fill}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">tables filled</span></div>
+    </div>
+
+    <div style="padding: 6px 14px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column">
+      <span style="padding: 10px 0 4px; font: 700 15px Archivo, sans-serif">By promoter</span>
+      <sc-for list="{{byPromoter}}" as="p" hint-placeholder-count="4">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: {{p.line}}">
+          <span style="width: 80px; font: 600 14px 'Instrument Sans', sans-serif">{{p.name}}</span>
+          <div style="flex: 1; height: 8px; border-radius: 4px; background: #EEECE6; overflow: hidden"><div style="height: 8px; border-radius: 4px; background: #111111; width: {{p.w}}"></div></div>
+          <span style="width: 64px; text-align: right; font: 600 13px 'Instrument Sans', sans-serif">{{p.rev}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding: 12px 20px 28px">
+    <button style="width: 100%; height: 52px; border-radius: 999px; border: 1.5px solid #111111; background: transparent; color: #111111; font: 600 15px 'Instrument Sans', sans-serif">Export CSV</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { period: 'week' };
+  }
+  renderVals() {
+    const data = {
+      week: { revenue: '$31,600', delta: '+12% vs last week', vsList: '94%', noShow: '4%', fill: '81%', bars: [['Thu', 2.1], ['Fri', 11.2], ['Sat', 17.4], ['Sun', 0.9]], promo: [['Dev S.', 9800], ['Maya R.', 8700], ['Jordan K.', 6900], ['Tay N.', 6200]] },
+      month: { revenue: '$118,400', delta: '+8% vs Oct', vsList: '93%', noShow: '6%', fill: '74%', bars: [['Wk 1', 24.8], ['Wk 2', 29.1], ['Wk 3', 32.9], ['Wk 4', 31.6]], promo: [['Maya R.', 34100], ['Dev S.', 32800], ['Jordan K.', 27500], ['Tay N.', 24000]] },
+      year: { revenue: '$1.2M', delta: '+21% vs 2025', vsList: '92%', noShow: '7%', fill: '71%', bars: [['Q1', 240], ['Q2', 310], ['Q3', 330], ['Q4', 320]], promo: [['Maya R.', 352000], ['Dev S.', 318000], ['Jordan K.', 287000], ['Tay N.', 243000]] }
+    };
+    const d = data[this.state.period];
+    const maxBar = Math.max.apply(null, d.bars.map((b) => b[1]));
+    const maxP = d.promo[0][1];
+    const money = (n) => n >= 100000 ? '$' + Math.round(n / 1000) + 'K' : '$' + n.toLocaleString('en-US');
+    return {
+      periods: [['week', 'This week'], ['month', 'This month'], ['year', 'This year']].map(([id, label]) => ({ label: label, bg: this.state.period === id ? '#FFFFFF' : 'transparent', shadow: this.state.period === id ? '0 2px 8px rgba(0,0,0,0.08)' : 'none', pick: () => this.setState({ period: id }) })),
+      revenue: d.revenue, delta: d.delta, vsList: d.vsList, noShow: d.noShow, fill: d.fill,
+      bars: d.bars.map((b) => ({ label: b[0], h: Math.max(6, Math.round((b[1] / maxBar) * 96)) + 'px', color: b[1] === maxBar ? '#C8FF3D' : '#5B5A55' })),
+      byPromoter: d.promo.map((p, i) => ({ name: p[0], rev: money(p[1]), w: Math.round((p[1] / maxP) * 100) + '%', line: i < d.promo.length - 1 ? '1px solid #EEECE6' : '0' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

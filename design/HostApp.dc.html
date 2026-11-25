@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Event host app — Winter Formal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 18px; background: #111111; color: #FFFFFF; border-radius: 0 0 28px 28px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="height: 26px; padding: 0 10px; border-radius: 999px; background: #C8FF3D; color: #111111; display: flex; align-items: center; font: 700 11px 'Instrument Sans', sans-serif; letter-spacing: 0.06em">EVENT HOST</span>
+      <span style="font: 400 13px 'Instrument Sans', sans-serif; color: #CFCDC6">Fri Dec 4 · 44 Toronto</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <span style="font: 800 30px/1 Archivo, sans-serif; letter-spacing: -0.035em">Winter Formal</span>
+      <span style="font: 400 14px 'Instrument Sans', sans-serif; color: #CFCDC6">Commerce Society · signed in as Ava L.</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <div style="height: 8px; border-radius: 4px; background: #2A2A28; overflow: hidden"><div style="width: {{soldPct}}; height: 8px; border-radius: 4px; background: #C8FF3D"></div></div>
+      <div style="display: flex; justify-content: space-between; font: 500 12px 'Instrument Sans', sans-serif; color: #CFCDC6"><span>{{soldLabel}}</span><span>{{revLabel}}</span></div>
+    </div>
+  </div>
+
+  <div style="flex: 1; padding: 16px 16px 0; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 0 4px"><h1 style="margin: 0; font: 700 20px Archivo, sans-serif; letter-spacing: -0.02em">Table requests</h1><span style="font: 500 12px 'Instrument Sans', sans-serif; color: #5E5D58">Floor: Booth $800 · VIP $1,750</span></div>
+    <sc-for list="{{requests}}" as="r" hint-placeholder-count="2">
+      <div style="padding: 14px; border-radius: 22px; background: #FFFFFF; border: {{r.border}}; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start">
+          <div style="display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px 'Instrument Sans', sans-serif">{{r.title}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{r.sub}}</span></div>
+          <span style="font: 800 22px Archivo, sans-serif; letter-spacing: -0.03em">{{r.offer}}</span>
+        </div>
+        <sc-if value="{{r.open}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; gap: 8px">
+            <button onClick="{{r.counter}}" style="flex: 1; height: 42px; border-radius: 999px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #111111; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">Counter {{r.counterPrice}}</button>
+            <button onClick="{{r.accept}}" style="flex: 1; height: 42px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">Accept</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{r.done}}" hint-placeholder-val="{{ false }}">
+          <span class="bpop" style="font: 600 13px 'Instrument Sans', sans-serif">{{r.doneText}}</span>
+        </sc-if>
+      </div>
+    </sc-for>
+
+    <div style="padding: 14px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 10px">
+      <span style="font: 700 15px Archivo, sans-serif">Your table reps</span>
+      <div style="display: flex; align-items: center; gap: 10px"><span style="width: 34px; height: 34px; border-radius: 50%; background: #5B5A55; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 12px Archivo, sans-serif">AL</span><span style="flex: 1; font: 600 14px 'Instrument Sans', sans-serif">Ava L. <span style="font-weight: 400; color: #5E5D58">· you</span></span><span style="font: 500 13px 'Instrument Sans', sans-serif">3 sold</span></div>
+      <div style="display: flex; align-items: center; gap: 10px"><span style="width: 34px; height: 34px; border-radius: 50%; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 12px Archivo, sans-serif">ST</span><span style="flex: 1; font: 600 14px 'Instrument Sans', sans-serif">Sam T.</span><span style="font: 500 13px 'Instrument Sans', sans-serif">2 sold</span></div>
+    </div>
+  </div>
+
+  <div style="padding: 12px 20px 28px; display: flex; gap: 10px">
+    <button style="flex: 1; height: 54px; border-radius: 999px; border: 1.5px solid #111111; background: transparent; color: #111111; font: 600 14px 'Instrument Sans', sans-serif">+ Add rep</button>
+    <button style="flex: 1.4; height: 54px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font: 600 14px 'Instrument Sans', sans-serif">Share event link</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { acted: {} };
+  }
+  renderVals() {
+    const reqs = [
+      { id: 'a', title: 'Party of 8 · Main VIP', sub: 'Grad table · picked you', offer: '$1,900', counterPrice: '$2,000', value: 1900, cval: 2000 },
+      { id: 'b', title: 'Party of 5 · Booth', sub: 'First-years · picked Sam', offer: '$800', counterPrice: '$900', value: 800, cval: 900 }
+    ];
+    const acted = this.state.acted;
+    let sold = 5;
+    let rev = 6300;
+    reqs.forEach((r) => {
+      if (acted[r.id] === 'accept') { sold += 1; rev += r.value; }
+    });
+    return {
+      soldPct: Math.round((sold / 8) * 100) + '%',
+      soldLabel: sold + ' of 8 tables sold',
+      revLabel: '$' + rev.toLocaleString('en-US') + ' in tables',
+      requests: reqs.map((r) => {
+        const a = acted[r.id];
+        return {
+          title: r.title, sub: r.sub, offer: r.offer, counterPrice: r.counterPrice,
+          open: !a, done: !!a,
+          doneText: a === 'accept' ? 'Accepted · table booked' : 'Countered ' + r.counterPrice + ' · waiting on guest',
+          border: a === 'accept' ? '2px solid #C8FF3D' : a === 'counter' ? '2px solid #111111' : '2px solid transparent',
+          accept: () => this.setState({ acted: Object.assign({}, acted, { [r.id]: 'accept' }) }),
+          counter: () => this.setState({ acted: Object.assign({}, acted, { [r.id]: 'counter' }) })
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

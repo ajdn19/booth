@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Owner app — Live night</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 20px; background: #111111; color: #FFFFFF; border-radius: 0 0 28px 28px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font: 400 13px 'Instrument Sans', sans-serif; color: #CFCDC6">44 Toronto · live · 11:26pm</span>
+      <span style="font: 600 10px 'Instrument Sans', sans-serif; letter-spacing: 0.08em; padding: 4px 8px; border-radius: 999px; background: #FFFFFF; color: #111111">OWNER</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 2px"><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #CFCDC6">Table revenue tonight</span><span style="font: 800 48px/1 Archivo, sans-serif; letter-spacing: -0.05em">$17,450</span></div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <div style="height: 8px; border-radius: 4px; background: #2A2A28; overflow: hidden"><div style="width: 64%; height: 8px; border-radius: 4px; background: #C8FF3D"></div></div>
+      <div style="display: flex; justify-content: space-between; font: 500 12px 'Instrument Sans', sans-serif; color: #CFCDC6"><span>9 of 14 tables sold</span><span>94% of list on average</span></div>
+    </div>
+  </div>
+
+  <div style="flex: 1; padding: 18px 16px 0; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+    <sc-if value="{{pending}}" hint-placeholder-val="{{ true }}">
+      <div style="padding: 16px; border-radius: 22px; background: #FFFFFF; border: 2px solid #111111; display: flex; flex-direction: column; gap: 10px">
+        <span style="font: 600 11px 'Instrument Sans', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: #5E5D58">Needs your OK · below floor</span>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px 'Instrument Sans', sans-serif">Tay N. → DJ side, party of 8</span><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #5E5D58">Floor $3,500 · list $4,000</span></div><span style="font: 800 24px Archivo, sans-serif; letter-spacing: -0.03em">$3,100</span></div>
+        <div style="display: flex; gap: 8px">
+          <button onClick="{{decline}}" style="flex: 1; height: 44px; border-radius: 999px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #111111; font: 600 14px 'Instrument Sans', sans-serif; cursor: pointer">Counter $3,500</button>
+          <button onClick="{{approve}}" style="flex: 1; height: 44px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font: 600 14px 'Instrument Sans', sans-serif; cursor: pointer">Approve</button>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{resolved}}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 14px 16px; border-radius: 22px; background: #FFFFFF; display: flex; align-items: center; gap: 12px"><span style="width: 32px; height: 32px; border-radius: 50%; background: #C8FF3D; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.5" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span style="font: 500 14px 'Instrument Sans', sans-serif">{{resolvedText}}</span></div>
+    </sc-if>
+
+    <div style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font: 700 17px Archivo, sans-serif">Most likely to land next</h2>
+      <div style="display: flex; flex-direction: column; gap: 5px"><div style="display: flex; justify-content: space-between; font: 400 14px 'Instrument Sans', sans-serif"><span><span style="font-weight: 600">Main VIP 3</span> · Jordan K.</span><span style="font-weight: 600">$1,850</span></div><div style="height: 8px; border-radius: 4px; background: #EEECE6; overflow: hidden"><div style="width: 91%; height: 8px; border-radius: 4px; background: #111111"></div></div></div>
+      <div style="display: flex; flex-direction: column; gap: 5px"><div style="display: flex; justify-content: space-between; font: 400 14px 'Instrument Sans', sans-serif"><span><span style="font-weight: 600">DJ side 2</span> · Dev S.</span><span style="font-weight: 600">$3,800</span></div><div style="height: 8px; border-radius: 4px; background: #EEECE6; overflow: hidden"><div style="width: 74%; height: 8px; border-radius: 4px; background: #9C9A92"></div></div></div>
+      <div style="display: flex; flex-direction: column; gap: 5px"><div style="display: flex; justify-content: space-between; font: 400 14px 'Instrument Sans', sans-serif"><span><span style="font-weight: 600">Booth 4</span> · Maya R.</span><span style="font-weight: 600">$850</span></div><div style="height: 8px; border-radius: 4px; background: #EEECE6; overflow: hidden"><div style="width: 58%; height: 8px; border-radius: 4px; background: #9C9A92"></div></div></div>
+    </div>
+
+    <div style="display: flex; gap: 10px">
+      <a href="OwnerDoor.dc.html" style="flex: 1; height: 48px; border-radius: 16px; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font: 600 14px 'Instrument Sans', sans-serif">Door check-in</a>
+      <a href="OwnerReports.dc.html" style="flex: 1; height: 48px; border-radius: 16px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 600 14px 'Instrument Sans', sans-serif">Reports</a>
+      <a href="OwnerTrust.dc.html" aria-label="Fraud and safety, 3 to review" style="flex: 1; height: 48px; border-radius: 16px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 6px; font: 600 14px 'Instrument Sans', sans-serif">Safety<span style="min-width: 20px; height: 20px; border-radius: 999px; background: #111111; color: #C8FF3D; display: flex; align-items: center; justify-content: center; font: 700 11px 'Instrument Sans', sans-serif">3</span></a>
+    </div>
+    <a href="OwnerTeam.dc.html" style="padding: 14px 16px; border-radius: 22px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between">
+      <div style="display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px 'Instrument Sans', sans-serif">Top promoter: Dev S.</span><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #5E5D58">3 tables · $6,400 · see full team</span></div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <nav style="display: flex; justify-content: space-around; align-items: center; height: 84px; padding-bottom: 18px; box-sizing: border-box; border-top: 1px solid #E4E2DC; background: #FFFFFF">
+    <a href="OwnerApp.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 600 11px 'Instrument Sans', sans-serif; color: #111111; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Live</a>
+    <a href="OwnerRoster.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 500 11px 'Instrument Sans', sans-serif; color: #5E5D58; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Schedule</a>
+    <a href="OwnerTeam.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 500 11px 'Instrument Sans', sans-serif; color: #5E5D58; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5 6.5-5s5.5 1.5 6.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4 1.5 4.5 4"/></svg>Team</a>
+    <a href="OwnerFloor.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 500 11px 'Instrument Sans', sans-serif; color: #5E5D58; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Pricing</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { choice: null };
+  }
+  renderVals() {
+    const c = this.state.choice;
+    return {
+      pending: !c,
+      resolved: !!c,
+      resolvedText: c === 'approve' ? 'Approved — Tay N. landed DJ side at $3,100' : 'Counter of $3,500 sent to the guest',
+      approve: () => this.setState({ choice: 'approve' }),
+      decline: () => this.setState({ choice: 'counter' })
+    };
+  }
+}
+</script>
+</body>
+</html>

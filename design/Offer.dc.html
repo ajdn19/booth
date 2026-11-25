@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Slide to offer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.bslide{-webkit-appearance:none;appearance:none;width:100%;height:56px;margin:0;background:transparent;position:relative;cursor:grab}
+.bslide::-webkit-slider-runnable-track{height:56px;background:transparent}
+.bslide::-moz-range-track{height:56px;background:transparent}
+.bslide::-webkit-slider-thumb{-webkit-appearance:none;width:56px;height:56px;border-radius:50%;background:#111111;border:4px solid #FFFFFF;box-shadow:0 6px 18px rgba(0,0,0,0.25)}
+.bslide::-moz-range-thumb{width:48px;height:48px;border-radius:50%;background:#111111;border:4px solid #FFFFFF;box-shadow:0 6px 18px rgba(0,0,0,0.25)}
+.bslide:focus-visible{outline:2px solid #111111;outline-offset:4px;border-radius:999px}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: 'Instrument Sans', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 0; display: flex; align-items: center; gap: 12px">
+    <a href="Club.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #F3F2EE; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+    <div style="display: flex; flex-direction: column"><span style="font: 600 15px 'Instrument Sans', sans-serif">44 Toronto</span><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #5E5D58">To Maya R. · Sat Nov 28 · 6 guests</span></div>
+  </div>
+
+  <div style="flex: 1; padding: 20px 20px 0; display: flex; flex-direction: column; gap: 18px; overflow: hidden">
+    <h1 style="margin: 0; font: 700 34px/1 Archivo, sans-serif; letter-spacing: -0.04em">Slide to offer.</h1>
+
+    <div style="display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 10px; border-radius: 20px; background: #111111; color: #FFFFFF">
+      <span style="width: 60px; height: 44px; border-radius: 14px; background: #C8FF3D; color: #111111; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; flex-shrink: 0"><span style="font: 700 13px Archivo, sans-serif">V2</span><span style="font: 500 10px 'Instrument Sans', sans-serif">$2K</span></span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px 'Instrument Sans', sans-serif">Main VIP · V2</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #CFCDC6">Front of the dance floor · up to 10</span></span>
+      <a href="Club.dc.html" style="height: 36px; padding: 0 14px; border-radius: 999px; background: #2A2A28; display: flex; align-items: center; font: 600 12px 'Instrument Sans', sans-serif">Change</a>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 6px">
+      <span style="font: 800 64px/1 Archivo, sans-serif; letter-spacing: -0.055em">{{offerLabel}}</span>
+      <span style="font: 400 14px 'Instrument Sans', sans-serif; color: #5E5D58">List {{listLabel}} · you save {{saveLabel}}</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div style="position: relative; height: 22px">
+        <span style="position: absolute; left: {{sweetLeft}}; width: {{sweetWidth}}; text-align: center; font: 600 11px 'Instrument Sans', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap">Most likely to land</span>
+      </div>
+      <div style="position: relative; height: 56px; border-radius: 999px; background: #F3F2EE">
+        <div style="position: absolute; top: 0; bottom: 0; left: {{sweetLeft}}; width: {{sweetWidth}}; background: #C8FF3D"></div>
+        <div style="position: absolute; top: 0; bottom: 0; left: 0; width: {{fill}}; border-radius: 999px 0 0 999px; background: rgba(17,17,17,0.08)"></div>
+        <label style="position: absolute; inset: 0">
+          <span style="position: absolute; left: -9999px">Offer amount</span>
+          <input class="bslide" type="range" min="{{min}}" max="{{max}}" step="50" value="{{offer}}" onChange="{{slide}}">
+        </label>
+      </div>
+      <div style="display: flex; justify-content: space-between; font: 500 12px 'Instrument Sans', sans-serif; color: #5E5D58"><span>{{minLabel}}</span><span>{{maxLabel}}</span></div>
+    </div>
+
+    <div style="padding: 16px; border-radius: 22px; background: #111111; color: #FFFFFF; display: flex; align-items: center; gap: 16px">
+      <div style="width: 64px; height: 64px; border-radius: 50%; border: 5px solid {{ring}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font: 700 17px Archivo, sans-serif">{{pct}}</div>
+      <div style="display: flex; flex-direction: column; gap: 3px">
+        <span style="font: 600 16px 'Instrument Sans', sans-serif">{{chance}}</span>
+        <span style="font: 400 13px/1.35 'Instrument Sans', sans-serif; color: #CFCDC6">Maya replies in ~5 min · {{left}} left tonight</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 14px 20px 30px">
+    <a href="CustomerChat.dc.html" style="height: 56px; border-radius: 999px; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 600 16px 'Instrument Sans', sans-serif">Send {{offerLabel}} to Maya</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { offer: 1800 };
+  }
+  renderVals() {
+    const cur = { list: 2000, left: 2 };
+    const fmt = (n) => '$' + n.toLocaleString('en-US');
+    const min = Math.round(cur.list * 0.5 / 50) * 50;
+    const max = Math.round(cur.list * 1.1 / 50) * 50;
+    const offer = Math.min(max, Math.max(min, this.state.offer));
+    const pos = (v) => ((v - min) / (max - min)) * 100;
+    const ratio = offer / cur.list;
+    const p = Math.max(5, Math.min(97, Math.round(((ratio - 0.55) / 0.45) * 100)));
+    const chance = ratio >= 0.88 ? 'Most likely to land' : ratio >= 0.75 ? 'Good chance — expect a counter' : 'Long shot';
+    return {
+      min: min, max: max, offer: offer,
+      minLabel: fmt(min), maxLabel: fmt(max),
+      offerLabel: fmt(offer), listLabel: fmt(cur.list),
+      saveLabel: fmt(Math.max(0, cur.list - offer)),
+      sweetLeft: pos(cur.list * 0.88) + '%',
+      sweetWidth: (pos(cur.list) - pos(cur.list * 0.88)) + '%',
+      fill: pos(offer) + '%',
+      slide: (e) => this.setState({ offer: Number(e.target.value) }),
+      pct: p + '%',
+      ring: ratio >= 0.88 ? '#C8FF3D' : ratio >= 0.75 ? '#FFFFFF' : '#5E5D58',
+      chance: chance,
+      left: cur.left
+    };
+  }
+}
+</script>
+</body>
+</html>

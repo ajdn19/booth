@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Promoter app — Earnings and booking link</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 20px; background: #111111; color: #FFFFFF; border-radius: 0 0 28px 28px; display: flex; flex-direction: column; gap: 14px">
+    <span style="font: 400 13px 'Instrument Sans', sans-serif; color: #CFCDC6">Jordan K. · November</span>
+    <div style="display: flex; flex-direction: column; gap: 2px"><span style="font: 800 46px/1 Archivo, sans-serif; letter-spacing: -0.05em">$2,140</span><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #CFCDC6">commission earned this month · 10% of table spend</span></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 16px; background: #2A2A28">
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px 'Instrument Sans', sans-serif">Next payout · $420</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #CFCDC6">Fri Nov 27 to bank ••• 4417</span></span>
+      <span style="height: 26px; padding: 0 10px; border-radius: 999px; background: #C8FF3D; color: #111111; display: flex; align-items: center; font: 600 11px 'Instrument Sans', sans-serif">Scheduled</span>
+    </div>
+  </div>
+
+  <div style="flex: 1; padding: 16px 16px 0; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+    <div style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; gap: 14px; align-items: center">
+      <div style="width: 76px; height: 76px; padding: 6px; box-sizing: border-box; border-radius: 12px; border: 1px solid #E4E2DC; display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); flex-shrink: 0" role="img" aria-label="QR code for Jordan's booking link">
+        <sc-for list="{{qr}}" as="c" hint-placeholder-count="121"><span style="background: {{c}}; aspect-ratio: 1"></span></sc-for>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+        <span style="font: 700 16px Archivo, sans-serif">Your booking link</span>
+        <span style="font: 500 13px 'Instrument Sans', sans-serif">booth.to/jordan</span>
+        <span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">38 bookings came from your link · always credited to you</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px">
+      <button onClick="{{copy}}" style="flex: 1; height: 44px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">{{copyLabel}}</button>
+      <button style="flex: 1; height: 44px; border-radius: 999px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #111111; font: 600 13px 'Instrument Sans', sans-serif">Share to Instagram</button>
+    </div>
+
+    <div style="border-radius: 22px; background: #FFFFFF; padding: 6px 14px; display: flex; flex-direction: column">
+      <span style="padding: 10px 0 4px; font: 700 15px Archivo, sans-serif">Recent tables</span>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EEECE6; font: 400 14px 'Instrument Sans', sans-serif"><span><span style="font-weight: 600">Main VIP 2</span> · Nov 28 · via your link</span><span style="font-weight: 600">+$185</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EEECE6; font: 400 14px 'Instrument Sans', sans-serif"><span><span style="font-weight: 600">Booth 1</span> · Nov 28</span><span style="font-weight: 600">+$90</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #EEECE6; font: 400 14px 'Instrument Sans', sans-serif"><span><span style="font-weight: 600">Toybox booth</span> · Nov 21</span><span style="font-weight: 600">+$65</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; font: 400 14px 'Instrument Sans', sans-serif"><span><span style="font-weight: 600">DJ side</span> · Nov 14 · no-show</span><span style="color: #5E5D58">$0</span></div>
+    </div>
+  </div>
+
+  <nav style="display: flex; justify-content: space-around; align-items: center; height: 84px; padding-bottom: 18px; box-sizing: border-box; border-top: 1px solid #E4E2DC; background: #FFFFFF">
+    <a href="PromoterApp.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 500 11px 'Instrument Sans', sans-serif; color: #5E5D58; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 3 4 14h7l-1 7 9-11h-7z"/></svg>Requests</a>
+    <a href="PromoterGuests.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 500 11px 'Instrument Sans', sans-serif; color: #5E5D58; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5 6.5-5s5.5 1.5 6.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4 1.5 4.5 4"/></svg>Guests</a>
+    <a href="PromoterChat.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 500 11px 'Instrument Sans', sans-serif; color: #5E5D58; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"/></svg>Chats</a>
+    <a href="PromoterEarnings.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 600 11px 'Instrument Sans', sans-serif; color: #111111; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18M17 7H9.5a2.5 2.5 0 0 0 0 5h5a2.5 2.5 0 0 1 0 5H7"/></svg>Earnings</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { copied: false };
+  }
+  renderVals() {
+    const n = 11;
+    const qr = [];
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const corner = (cx, cy) => x >= cx && x < cx + 3 && y >= cy && y < cy + 3;
+      const on = corner(0, 0) || corner(8, 0) || corner(0, 8) ? !(x % 8 === 1 && y % 8 === 1) : ((x * 5 + y * 3 + x * y) % 4) < 2;
+      qr.push(on ? '#111111' : '#FFFFFF');
+    }
+    return { qr: qr, copyLabel: this.state.copied ? 'Copied ✓' : 'Copy link', copy: () => this.setState({ copied: true }) };
+  }
+}
+</script>
+</body>
+</html>

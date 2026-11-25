@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Booth — Profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible{outline:2px solid #111111;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 20px; background: #111111; color: #FFFFFF; border-radius: 0 0 28px 28px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: center; gap: 14px">
+      <span style="position: relative; width: 64px; height: 64px; border-radius: 50%; background: #5B5A55; display: flex; align-items: center; justify-content: center; font: 700 22px Archivo, sans-serif"><span>MK</span><span style="position: absolute; right: -2px; bottom: -2px; width: 22px; height: 22px; border-radius: 50%; background: #C8FF3D; border: 3px solid #111111; display: flex; align-items: center; justify-content: center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="3.5" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg></span></span>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span style="font: 700 22px Archivo, sans-serif; letter-spacing: -0.03em">Max K.</span>
+        <span style="font: 400 13px &quot;Instrument Sans&quot;, sans-serif; color: rgb(207, 205, 198)">Toronto · ID verified · since 2025</span>
+      </div>
+      <a href="Settings.dc.html" aria-label="Settings" style="width: 44px; height: 44px; border-radius: 50%; background: #2A2A28; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg></a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <div style="padding: 10px 12px; border-radius: 16px; background: #2A2A28; display: flex; flex-direction: column; gap: 2px"><span style="font: 800 22px Archivo, sans-serif">12</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #CFCDC6">nights booked</span></div>
+      <div style="padding: 10px 12px; border-radius: 16px; background: #2A2A28; display: flex; flex-direction: column; gap: 2px"><span style="font: 800 22px Archivo, sans-serif">$1,240</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #CFCDC6">saved vs list</span></div>
+      <div style="padding: 10px 12px; border-radius: 16px; background: #C8FF3D; color: #111111; display: flex; flex-direction: column; gap: 2px"><span style="font: 800 22px Archivo, sans-serif">Regular</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #333331">3 more to VIP</span></div>
+    </div>
+  </div>
+
+  <div style="flex: 1; padding: 16px 16px 0; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+    <a href="Confirm.dc.html" style="padding: 14px; border-radius: 22px; background: #FFFFFF; border: 2px solid #111111; display: flex; align-items: center; gap: 12px">
+      <span style="width: 48px; height: 48px; border-radius: 14px; background: #111111; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font: 600 10px 'Instrument Sans', sans-serif; letter-spacing: 0.06em">NOV</span><span style="font: 800 18px/1 Archivo, sans-serif">28</span></span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px 'Instrument Sans', sans-serif">44 Toronto · V2 Main VIP</span><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #5E5D58">Upcoming · with Maya R. · $1,850</span></span>
+      <span style="height: 26px; padding: 0 10px; border-radius: 999px; background: #C8FF3D; display: flex; align-items: center; font: 600 11px 'Instrument Sans', sans-serif">Confirmed</span>
+    </a>
+
+    <div style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: #E4E2DC">
+      <button onClick="{{showHistory}}" style="flex: 1; height: 40px; border-radius: 999px; border: 0; background: {{histBg}}; box-shadow: {{histShadow}}; font: 600 13px 'Instrument Sans', sans-serif; color: #111111; cursor: pointer">History</button>
+      <button onClick="{{showFavs}}" style="flex: 1; height: 40px; border-radius: 999px; border: 0; background: {{favBg}}; box-shadow: {{favShadow}}; font: 600 13px 'Instrument Sans', sans-serif; color: #111111; cursor: pointer">Favourites</button>
+    </div>
+
+    <sc-if value="{{isHistory}}" hint-placeholder-val="{{ true }}">
+      <div style="border-radius: 22px; background: #FFFFFF; padding: 4px 14px; display: flex; flex-direction: column">
+        <sc-for list="{{history}}" as="h" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: {{h.line}}">
+            <span style="width: 44px; display: flex; flex-direction: column; align-items: center"><span style="font: 600 10px 'Instrument Sans', sans-serif; letter-spacing: 0.06em; color: #5E5D58">{{h.mon}}</span><span style="font: 800 18px/1.1 Archivo, sans-serif">{{h.day}}</span></span>
+            <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px 'Instrument Sans', sans-serif">{{h.club}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{h.meta}}</span></span>
+            <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px"><span style="font: 700 14px 'Instrument Sans', sans-serif">{{h.paid}}</span><a href="{{h.href}}" style="font: 600 12px 'Instrument Sans', sans-serif; text-decoration: underline">{{h.action}}</a></span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isFavs}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="font: 600 12px 'Instrument Sans', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: #5E5D58; padding: 0 4px">Your promoters</span>
+        <div style="display: flex; gap: 8px">
+          <span style="flex: 1; padding: 12px; border-radius: 18px; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; gap: 6px"><span style="width: 44px; height: 44px; border-radius: 50%; background: #5B5A55; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 14px Archivo, sans-serif">MR</span><span style="font: 600 13px 'Instrument Sans', sans-serif">Maya R.</span><span style="font: 400 11px 'Instrument Sans', sans-serif; color: #5E5D58">44 Toronto · 5×</span></span>
+          <span style="flex: 1; padding: 12px; border-radius: 18px; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; gap: 6px"><span style="width: 44px; height: 44px; border-radius: 50%; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 14px Archivo, sans-serif">DS</span><span style="font: 600 13px 'Instrument Sans', sans-serif">Dev S.</span><span style="font: 400 11px 'Instrument Sans', sans-serif; color: #5E5D58">Rebel · 2×</span></span>
+          <span style="flex: 1; padding: 12px; border-radius: 18px; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; gap: 6px"><span style="width: 44px; height: 44px; border-radius: 50%; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 14px Archivo, sans-serif">JK</span><span style="font: 600 13px 'Instrument Sans', sans-serif">Jordan K.</span><span style="font: 400 11px 'Instrument Sans', sans-serif; color: #5E5D58">Toybox · 1×</span></span>
+        </div>
+        <span style="font: 600 12px 'Instrument Sans', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: #5E5D58; padding: 4px 4px 0">Saved clubs</span>
+        <div style="border-radius: 22px; background: #FFFFFF; padding: 4px 14px; display: flex; flex-direction: column">
+          <a href="Club.dc.html" style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #EEECE6; font: 600 14px 'Instrument Sans', sans-serif"><span>44 Toronto</span><span style="font-weight: 400; color: #5E5D58">King West ›</span></a>
+          <a href="Club.dc.html" style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #EEECE6; font: 600 14px 'Instrument Sans', sans-serif"><span>Rebel</span><span style="font-weight: 400; color: #5E5D58">Polson Pier ›</span></a>
+          <a href="Club.dc.html" style="display: flex; justify-content: space-between; padding: 12px 0; font: 600 14px 'Instrument Sans', sans-serif"><span>Toybox</span><span style="font-weight: 400; color: #5E5D58">King West ›</span></a>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <nav style="display: flex; justify-content: space-around; align-items: center; height: 84px; padding-bottom: 18px; box-sizing: border-box; border-top: 1px solid #E4E2DC; background: #FFFFFF">
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 500 11px 'Instrument Sans', sans-serif; color: #5E5D58; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2 5-5 2 2-5z"></path></svg>Discover</a>
+    <a href="Confirm.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 500 11px 'Instrument Sans', sans-serif; color: #5E5D58; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path></svg>Offers</a>
+    <a href="Confirm.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 500 11px 'Instrument Sans', sans-serif; color: #5E5D58; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>Bookings</a>
+    <a href="Profile.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font: 600 11px 'Instrument Sans', sans-serif; color: #111111; min-width: 44px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Profile</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'history' };
+  }
+  renderVals() {
+    const isHistory = this.state.tab === 'history';
+    const history = [
+      { mon: 'NOV', day: '14', club: '44 Toronto', meta: 'Booth B3 · Maya R. · ★★★★★ given', paid: '$800', action: 'Book again' },
+      { mon: 'OCT', day: '31', club: 'Rebel', meta: 'Mezzanine · Dev S. · saved $200', paid: '$1,000', action: 'Book again' },
+      { mon: 'OCT', day: '17', club: 'Toybox', meta: 'Booth · Jordan K. · not rated', paid: '$650', action: 'Rate night' },
+      { mon: 'SEP', day: '27', club: '44 Toronto', meta: 'Main VIP V3 · Maya R. · ★★★★★ given', paid: '$1,900', action: 'Book again' }
+    ];
+    const on = { bg: '#FFFFFF', sh: '0 2px 8px rgba(0,0,0,0.08)' };
+    const off = { bg: 'transparent', sh: 'none' };
+    return {
+      isHistory: isHistory,
+      isFavs: !isHistory,
+      history: history.map((h, i) => Object.assign({}, h, { href: h.action === 'Rate night' ? 'Rate.dc.html' : 'Club.dc.html', line: i < history.length - 1 ? '1px solid #EEECE6' : '0' })),
+      histBg: isHistory ? on.bg : off.bg, histShadow: isHistory ? on.sh : off.sh,
+      favBg: isHistory ? off.bg : on.bg, favShadow: isHistory ? off.sh : on.sh,
+      showHistory: () => this.setState({ tab: 'history' }),
+      showFavs: () => this.setState({ tab: 'favs' })
+    };
+  }
+}
+</script>
+</body>
+</html>

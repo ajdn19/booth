@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sold out — join the waitlist</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 20px; background: #111111; color: #FFFFFF; border-radius: 0 0 28px 28px; display: flex; flex-direction: column; gap: 14px">
+    <a href="Main.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #2A2A28; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+    <span style="align-self: flex-start; height: 26px; padding: 0 10px; border-radius: 999px; background: #2A2A28; display: flex; align-items: center; font: 600 11px 'Instrument Sans', sans-serif; letter-spacing: 0.06em">SOLD OUT · SAT NOV 28</span>
+    <span style="font: 800 32px/1 Archivo, sans-serif; letter-spacing: -0.04em">Rebel is fully<br>booked.</span>
+    <span style="font: 400 14px/1.4 'Instrument Sans', sans-serif; color: #CFCDC6">Tables open up when groups cancel or don't cover their deposit. Get first dibs.</span>
+  </div>
+
+  <div style="flex: 1; padding: 18px 16px 0; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+    <sc-if value="{{joining}}" hint-placeholder-val="{{ true }}">
+      <div style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 14px">
+        <span style="font: 700 17px Archivo, sans-serif">What would you take?</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{types}}" as="t" hint-placeholder-count="3">
+            <button onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">{{t.label}}</button>
+          </sc-for>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <span style="font: 600 14px 'Instrument Sans', sans-serif">Party size</span>
+          <div style="display: flex; align-items: center; gap: 12px">
+            <button onClick="{{less}}" aria-label="Fewer guests" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid #E4E2DC; background: #FFFFFF; font: 500 18px 'Instrument Sans', sans-serif; color: #111111">−</button>
+            <span style="font: 700 17px Archivo, sans-serif">{{size}}</span>
+            <button onClick="{{more}}" aria-label="More guests" style="width: 40px; height: 40px; border-radius: 50%; border: 0; background: #111111; color: #FFFFFF; font: 500 18px 'Instrument Sans', sans-serif">+</button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{joined}}" hint-placeholder-val="{{ false }}">
+      <div class="bpop" style="padding: 18px; border-radius: 22px; background: #FFFFFF; border: 2px solid #111111; display: flex; align-items: center; gap: 14px">
+        <span style="width: 56px; height: 56px; border-radius: 50%; background: #C8FF3D; display: flex; align-items: center; justify-content: center; font: 800 20px Archivo, sans-serif">#3</span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px 'Instrument Sans', sans-serif">You're 3rd in line</span><span style="font: 400 13px/1.35 'Instrument Sans', sans-serif; color: #5E5D58">We'll push you the moment a matching table opens. You'll have 15 min to claim it.</span></span>
+      </div>
+    </sc-if>
+
+    <span style="font: 600 12px 'Instrument Sans', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: #5E5D58; padding: 0 4px">Tables still open on Sat Nov 28</span>
+    <a href="Club.dc.html" style="padding: 14px; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; gap: 12px">
+      <span style="width: 44px; height: 44px; border-radius: 14px; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 800 11px Archivo, sans-serif">44</span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 600 14px 'Instrument Sans', sans-serif">44 Toronto</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">King West · 3 tables left</span></span>
+      <span style="font: 600 13px 'Instrument Sans', sans-serif">$900+</span>
+    </a>
+    <a href="Club.dc.html" style="padding: 14px; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; gap: 12px">
+      <span style="width: 44px; height: 44px; border-radius: 14px; background: #5B5A55; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 800 10px Archivo, sans-serif">TOYBOX</span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 600 14px 'Instrument Sans', sans-serif">Toybox</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">King West · 4 tables left</span></span>
+      <span style="font: 600 13px 'Instrument Sans', sans-serif">$700+</span>
+    </a>
+  </div>
+
+  <div style="padding: 12px 20px 28px">
+    <button onClick="{{join}}" style="width: 100%; height: 56px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font: 600 16px 'Instrument Sans', sans-serif; cursor: pointer">{{ctaLabel}}</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { joined: false, size: 6, types: { booth: true, vip: true } };
+  }
+  renderVals() {
+    const types = [['booth', 'Booth'], ['vip', 'Main VIP'], ['dj', 'DJ side']];
+    const t = this.state.types;
+    return {
+      joining: !this.state.joined,
+      joined: this.state.joined,
+      types: types.map(([id, label]) => {
+        const on = !!t[id];
+        return { label: label, pressed: on ? 'true' : 'false', border: on ? '1.5px solid #111111' : '1px solid #D9D6CC', bg: on ? '#111111' : '#FFFFFF', fg: on ? '#FFFFFF' : '#111111', toggle: () => this.setState({ types: Object.assign({}, t, { [id]: !on }) }) };
+      }),
+      size: this.state.size,
+      less: () => this.setState({ size: Math.max(1, this.state.size - 1) }),
+      more: () => this.setState({ size: Math.min(12, this.state.size + 1) }),
+      ctaLabel: this.state.joined ? 'Leave waitlist' : 'Notify me when a table opens',
+      join: () => this.setState({ joined: !this.state.joined })
+    };
+  }
+}
+</script>
+</body>
+</html>
