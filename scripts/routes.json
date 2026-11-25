@@ -1,1 +1,23 @@
-{"Main":"/","Club":"/club","Offer":"/offer","Confirm":"/requests","Profile":"/profile","CustomerChat":"/chat","Checkout":"/checkout","Booked":"/booked","Split":"/split","Pass":"/pass","Rate":"/rate","Waitlist":"/waitlist","Tonight":"/tonight","Notifications":"/notifications","NightOf":"/night-of","Settings":"/settings"}
+{
+  "Main": "/",
+  "Club": "/club",
+  "Offer": "/offer",
+  "Confirm": "/requests",
+  "Profile": "/profile",
+  "CustomerChat": "/chat",
+  "Checkout": "/checkout",
+  "Booked": "/booked",
+  "Split": "/split",
+  "Pass": "/pass",
+  "Rate": "/rate",
+  "Waitlist": "/waitlist",
+  "Tonight": "/tonight",
+  "Notifications": "/notifications",
+  "NightOf": "/night-of",
+  "Settings": "/settings",
+  "Promoter": "/promoter",
+  "PromoterApp": "/promoter/app",
+  "PromoterChat": "/promoter/app/chats",
+  "PromoterGuests": "/promoter/app/guests",
+  "PromoterEarnings": "/promoter/app/earnings"
+}

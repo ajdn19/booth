@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
+import { BrowserRouter, Outlet, Route, Routes, useLocation } from 'react-router';
 import Discover from './screens/customer/Discover';
 import Club from './screens/customer/Club';
 import Offer from './screens/customer/Offer';
@@ -16,6 +16,11 @@ import Tonight from './screens/customer/Tonight';
 import Notifications from './screens/customer/Notifications';
 import NightOf from './screens/customer/NightOf';
 import Settings from './screens/customer/Settings';
+import PromoterConsole from './screens/promoter/Console';
+import PromoterRequests from './screens/promoter/Requests';
+import PromoterChats from './screens/promoter/Chats';
+import PromoterGuests from './screens/promoter/Guests';
+import PromoterEarnings from './screens/promoter/Earnings';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -25,12 +30,31 @@ function ScrollToTop() {
   return null;
 }
 
+/** Phone screens render in a single centered column on wide displays. */
+function PhoneFrame() {
+  return (
+    <div className="app-frame">
+      <Outlet />
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="app-frame">
-        <Routes>
+      <Routes>
+        {/* Desktop consoles use the full browser width. */}
+        <Route path="/promoter" element={<PromoterConsole />} />
+
+        <Route element={<PhoneFrame />}>
+          {/* Promoter phone app */}
+          <Route path="/promoter/app" element={<PromoterRequests />} />
+          <Route path="/promoter/app/chats" element={<PromoterChats />} />
+          <Route path="/promoter/app/guests" element={<PromoterGuests />} />
+          <Route path="/promoter/app/earnings" element={<PromoterEarnings />} />
+
+          {/* Customer app */}
           <Route path="/" element={<Discover />} />
           <Route path="/club" element={<Club />} />
           <Route path="/offer" element={<Offer />} />
@@ -48,8 +72,8 @@ export default function App() {
           <Route path="/night-of" element={<NightOf />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<Discover />} />
-        </Routes>
-      </div>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

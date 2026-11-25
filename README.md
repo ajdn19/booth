@@ -6,8 +6,8 @@ This repo is built from the **Nightclub Table Booking App** design canvas (32 sc
 
 | App | Status |
 | --- | --- |
-| Customer app (16 phone screens) | ✅ Built (this increment) |
-| Promoter console + phone app | Planned |
+| Customer app (16 phone screens) | ✅ Built |
+| Promoter console + phone app (desktop + 4 phone screens) | ✅ Built |
 | Owner dashboard + phone app | Planned |
 | Event host app | Planned |
 
@@ -51,6 +51,16 @@ The customer app is phone-first. On a desktop browser it renders as a centered 4
 | `/night-of` | Rides & your tab |
 | `/settings` | Language, accessibility, payment |
 
+## Promoter routes
+
+| Route | Screen |
+| --- | --- |
+| `/promoter` | Promoter console (desktop): tonight's requests, table list, team chat |
+| `/promoter/app` | Phone app: requests |
+| `/promoter/app/chats` | Phone app: team and guest chats |
+| `/promoter/app/guests` | Phone app: guest CRM |
+| `/promoter/app/earnings` | Phone app: earnings & booking link |
+
 ## Project layout
 
 ```
@@ -58,10 +68,11 @@ design/                 design canvas source (.dc.html artboards + canvas.json)
 scripts/dc-to-tsx.mjs   converts a design artboard into a starter React screen
 src/lib/                shared hooks
 src/screens/customer/   one component per customer screen
+src/screens/promoter/   promoter console and phone app
 ```
 
 ## Next steps
 
-- Port the promoter, owner and event host apps
+- Port the owner and event host apps
 - Pull shared pieces (tab bar, back button, pills, cards) into components
 - Replace sample data with an API and shared booking state across screens
