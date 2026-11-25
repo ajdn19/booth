@@ -91,13 +91,14 @@ function styleObj(str, isRoot, depth1) {
     if (isRoot) {
       if (k === 'width' && v === '390px') v = '100%';
       if (k === 'height' && v === '844px') { k = 'minHeight'; v = '100dvh'; }
+      if (k === 'min-height') v = '100dvh';
     }
     if (depth1 && hasFlex1 && k === 'overflow' && v === 'hidden') { continue; }
     const key = k.startsWith('--') ? JSON.stringify(k) : camel(k);
     const ve = valueExpr(v);
     out.push(`${key}: ${ve ?? JSON.stringify(v)}`);
   }
-  if (isRoot && !props.some(([k]) => k === 'height')) out.push(`minHeight: "100dvh"`);
+  if (isRoot && !props.some(([k]) => k === 'height' || k === 'min-height')) out.push(`minHeight: "100dvh"`);
   return '{{ ' + out.join(', ') + ' }}';
 }
 
