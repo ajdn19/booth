@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rate your night</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 0; display: flex; justify-content: space-between; align-items: center">
+    <span style="font: 500 13px 'Instrument Sans', sans-serif; color: #5E5D58">Sun Nov 29 · 1:12pm</span>
+    <a href="Profile.dc.html" style="font: 600 13px 'Instrument Sans', sans-serif; color: #5E5D58">Skip</a>
+  </div>
+
+  <div style="flex: 1; padding: 18px 20px 0; display: flex; flex-direction: column; gap: 20px; overflow: hidden">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h1 style="margin: 0; font: 800 32px/1 Archivo, sans-serif; letter-spacing: -0.04em">How was<br>44 Toronto?</h1>
+      <span style="font: 400 14px 'Instrument Sans', sans-serif; color: #5E5D58">V2 Main VIP · Sat Nov 28 · 6 guests checked in</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font: 600 12px 'Instrument Sans', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: #5E5D58">The club</span>
+      <div style="display: flex; gap: 8px">
+        <sc-for list="{{clubStars}}" as="s" hint-placeholder-count="5">
+          <button onClick="{{s.pick}}" aria-label="{{s.label}}" style="width: 56px; height: 56px; border-radius: 16px; border: 0; background: {{s.bg}}; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="26" height="26" viewBox="0 0 24 24" fill="{{s.fill}}" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z"/></svg></button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding: 16px; border-radius: 22px; background: #F3F2EE; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <span style="width: 44px; height: 44px; border-radius: 50%; background: #5B5A55; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 14px Archivo, sans-serif">MR</span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 600 15px 'Instrument Sans', sans-serif">Your host, Maya R.</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">What stood out?</span></span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{tags}}" as="t" hint-placeholder-count="6">
+          <button onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" style="height: 38px; padding: 0 14px; border-radius: 999px; border: {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">{{t.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <label style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font: 600 12px 'Instrument Sans', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: #5E5D58">Anything else?</span>
+      <textarea placeholder="Tell other guests what the night was like" style="height: 84px; padding: 12px 14px; box-sizing: border-box; border-radius: 16px; border: 1px solid #E4E2DC; background: #FFFFFF; resize: none; font: 400 14px/1.4 'Instrument Sans', sans-serif; color: #111111"></textarea>
+    </label>
+    <button style="height: 48px; border-radius: 16px; border: 1.5px dashed #B5B2A8; background: transparent; font: 600 14px 'Instrument Sans', sans-serif; color: #111111">+ Add photos from the night</button>
+  </div>
+
+  <div style="padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 8px">
+    <a href="Profile.dc.html" style="height: 56px; border-radius: 999px; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 600 16px 'Instrument Sans', sans-serif">Post review</a>
+    <span style="text-align: center; font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">Shown as a verified booking on the club page.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { stars: 5, tags: { fast: true, table: true } };
+  }
+  renderVals() {
+    const tags = [['fast', 'Fast replies'], ['table', 'Table as promised'], ['entry', 'No-line entry'], ['price', 'Fair price'], ['vibe', 'Great vibe'], ['service', 'Attentive service']];
+    const t = this.state.tags;
+    return {
+      clubStars: [1, 2, 3, 4, 5].map((n) => ({
+        label: n + ' star' + (n > 1 ? 's' : ''),
+        bg: n <= this.state.stars ? '#111111' : '#F3F2EE',
+        fill: n <= this.state.stars ? '#C8FF3D' : '#B5B2A8',
+        pick: () => this.setState({ stars: n })
+      })),
+      tags: tags.map(([id, label]) => {
+        const on = !!t[id];
+        return { label: label, pressed: on ? 'true' : 'false', border: on ? '1.5px solid #111111' : '1px solid #D9D6CC', bg: on ? '#111111' : '#FFFFFF', fg: on ? '#FFFFFF' : '#111111', toggle: () => this.setState({ tags: Object.assign({}, t, { [id]: !on }) }) };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

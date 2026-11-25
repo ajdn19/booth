@@ -1,0 +1,477 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Checkout.dc.html": {
+      "h": 1420,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "7 · Checkout: bottles, add-ons, real total",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "Club.dc.html": {
+      "h": 2960,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "2 · Club page (full scroll)",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "Confirm.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "4 · My requests tonight",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "CustomerChat.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "6 · Chat with your promoter",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "HostApp.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "host",
+      "radius": 40,
+      "title": "Event host app · Winter Formal",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "1 · Discover Toronto",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "Offer.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "3 · Offer to your promoter",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "Owner.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "owner",
+      "title": "Owner dashboard",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "OwnerApp.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "owner",
+      "radius": 40,
+      "title": "Owner app · Live night",
+      "w": 390,
+      "x": 1520,
+      "y": 0
+    },
+    "OwnerRoster.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "owner",
+      "radius": 40,
+      "title": "Owner app · Promoter schedule",
+      "w": 390,
+      "x": 2460,
+      "y": 0
+    },
+    "OwnerFloor.dc.html": {
+      "h": 1140,
+      "is_interactive": true,
+      "page": "owner",
+      "radius": 40,
+      "title": "Owner app · Floor plan & pricing",
+      "w": 390,
+      "x": 2930,
+      "y": 0
+    },
+    "OwnerDoor.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "owner",
+      "radius": 40,
+      "title": "Owner app · Door check-in",
+      "w": 390,
+      "x": 3400,
+      "y": 0
+    },
+    "OwnerReports.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "owner",
+      "radius": 40,
+      "title": "Owner app · Reports",
+      "w": 390,
+      "x": 3870,
+      "y": 0
+    },
+    "OwnerHostDeal.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "owner",
+      "radius": 40,
+      "title": "Owner app · Event host agreement",
+      "w": 390,
+      "x": 4340,
+      "y": 0
+    },
+    "OwnerTeam.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "owner",
+      "radius": 40,
+      "title": "Owner app · Team",
+      "w": 390,
+      "x": 1990,
+      "y": 0
+    },
+    "Pass.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "9 · Table pass & guest list",
+      "w": 390,
+      "x": 3760,
+      "y": 0
+    },
+    "Profile.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "5 · Profile & history",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "Promoter.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "promoter",
+      "title": "Promoter console",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "PromoterApp.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "promoter",
+      "radius": 40,
+      "title": "Promoter app · Requests",
+      "w": 390,
+      "x": 1520,
+      "y": 0
+    },
+    "PromoterChat.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "promoter",
+      "radius": 40,
+      "title": "Promoter app · Chats",
+      "w": 390,
+      "x": 1990,
+      "y": 0
+    },
+    "PromoterGuests.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "promoter",
+      "radius": 40,
+      "title": "Promoter app · Guest CRM",
+      "w": 390,
+      "x": 2460,
+      "y": 0
+    },
+    "PromoterEarnings.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "promoter",
+      "radius": 40,
+      "title": "Promoter app · Earnings & booking link",
+      "w": 390,
+      "x": 2930,
+      "y": 0
+    },
+    "Rate.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "10 · Rate your night",
+      "w": 390,
+      "x": 4230,
+      "y": 0
+    },
+    "Split.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "8 · Split with your group",
+      "w": 390,
+      "x": 3290,
+      "y": 0
+    },
+    "Tonight.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "12 · Tonight: just opened & late deals",
+      "w": 390,
+      "x": 5170,
+      "y": 0
+    },
+    "Notifications.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "13 · Notifications",
+      "w": 390,
+      "x": 5640,
+      "y": 0
+    },
+    "NightOf.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "14 · Night of: rides & your tab",
+      "w": 390,
+      "x": 6110,
+      "y": 0
+    },
+    "Settings.dc.html": {
+      "h": 1180,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "15 · Settings: French, accessibility, payment",
+      "w": 390,
+      "x": 6580,
+      "y": 0
+    },
+    "Booked.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "7b · You're booked",
+      "w": 390,
+      "x": 7050,
+      "y": 0
+    },
+    "OwnerPricing.dc.html": {
+      "h": 1420,
+      "is_interactive": true,
+      "page": "owner",
+      "radius": 40,
+      "title": "Owner app · Pricing suggestions",
+      "w": 390,
+      "x": 4810,
+      "y": 0
+    },
+    "OwnerTrust.dc.html": {
+      "h": 1030,
+      "is_interactive": true,
+      "page": "owner",
+      "radius": 40,
+      "title": "Owner app · Fraud & safety",
+      "w": 390,
+      "x": 5280,
+      "y": 0
+    },
+    "Waitlist.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "customer",
+      "radius": 40,
+      "title": "11 · Sold out → waitlist",
+      "w": 390,
+      "x": 4700,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-11-25T04:45:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "page": "customer",
+    "view": "canvas"
+  },
+  "noteOrder": [
+    "title",
+    "sample",
+    "ptitle",
+    "psample",
+    "otitle",
+    "osample",
+    "htitle",
+    "hsample",
+    "roadmap"
+  ],
+  "notes": {
+    "hsample": {
+      "fill": "gray",
+      "page": "host",
+      "text": "For nights the owner hands off (Owner → Schedule → \"Hand to event host\"). The host team sells every table that night, within the club's floor prices; guests see the event on the club page and message the host team instead of club promoters. Sample data only.",
+      "w": 320,
+      "x": 470,
+      "y": 0
+    },
+    "htitle": {
+      "kind": "title1",
+      "maxW": 1200,
+      "page": "host",
+      "text": "Event host — student clubs & event consultants",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    },
+    "osample": {
+      "fill": "gray",
+      "page": "owner",
+      "text": "Sample data only. Owners read every team chat and see which promoter closed each table.",
+      "w": 300,
+      "x": 5750,
+      "y": 0
+    },
+    "otitle": {
+      "kind": "title1",
+      "maxW": 5670,
+      "page": "owner",
+      "text": "Owner — desktop dashboard + phone app",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    },
+    "psample": {
+      "fill": "gray",
+      "page": "promoter",
+      "text": "Sample data only. Guests pick which promoter they talk to on the club page, so each request arrives addressed to one promoter.",
+      "w": 300,
+      "x": 3400,
+      "y": 0
+    },
+    "ptitle": {
+      "kind": "title1",
+      "maxW": 3320,
+      "page": "promoter",
+      "text": "Promoter — desktop console + phone app",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    },
+    "roadmap": {
+      "fill": "orange",
+      "page": "customer",
+      "text": "Later roadmap (not designed yet):\n• More cities — Montreal, Miami\n• Loyalty perks: Regular → VIP tiers\n• Tickets & guest list for non-table guests\n• Corporate & group bookings\n• Booth+ membership with priority access",
+      "w": 340,
+      "x": 7520,
+      "y": 420
+    },
+    "sample": {
+      "fill": "gray",
+      "page": "customer",
+      "text": "Prototype only: all prices, ratings, reviews, promoter names and chats are placeholder sample data, not real venue figures. Press Play on Discover to click through.",
+      "w": 300,
+      "x": 7520,
+      "y": 0
+    },
+    "title": {
+      "kind": "title1",
+      "maxW": 7400,
+      "page": "customer",
+      "text": "Booth — Toronto tables, booked & negotiated",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Club.dc.html",
+    "Offer.dc.html",
+    "Confirm.dc.html",
+    "Promoter.dc.html",
+    "Owner.dc.html",
+    "PromoterApp.dc.html",
+    "PromoterChat.dc.html",
+    "OwnerApp.dc.html",
+    "OwnerTeam.dc.html",
+    "Profile.dc.html",
+    "OwnerRoster.dc.html",
+    "HostApp.dc.html",
+    "CustomerChat.dc.html",
+    "Checkout.dc.html",
+    "Split.dc.html",
+    "Pass.dc.html",
+    "Rate.dc.html",
+    "Waitlist.dc.html",
+    "PromoterGuests.dc.html",
+    "PromoterEarnings.dc.html",
+    "OwnerFloor.dc.html",
+    "OwnerDoor.dc.html",
+    "OwnerReports.dc.html",
+    "OwnerHostDeal.dc.html",
+    "Tonight.dc.html",
+    "Notifications.dc.html",
+    "NightOf.dc.html",
+    "Settings.dc.html",
+    "Booked.dc.html",
+    "OwnerPricing.dc.html",
+    "OwnerTrust.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "customer",
+      "name": "Customer app"
+    },
+    {
+      "id": "promoter",
+      "name": "Promoter"
+    },
+    {
+      "id": "owner",
+      "name": "Owner"
+    },
+    {
+      "id": "host",
+      "name": "Event host"
+    }
+  ],
+  "title": "Nightclub Table Booking App"
+}

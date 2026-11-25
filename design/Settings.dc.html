@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings — language, accessibility, alerts, payment</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column; padding-bottom: 30px">
+  <div style="padding: 52px 20px 14px; display: flex; align-items: center; gap: 12px">
+    <a href="Profile.dc.html" aria-label="{{t.back}}" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+    <h1 style="margin: 0; font: 800 {{h1}} Archivo, sans-serif; letter-spacing: -0.03em">{{t.title}}</h1>
+  </div>
+
+  <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 14px">
+    <section style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font: 700 {{h2}} Archivo, sans-serif">{{t.language}}</h2>
+      <div style="display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: #F3F2EE">
+        <button onClick="{{setEn}}" aria-pressed="{{enPressed}}" style="flex: 1; height: 42px; border-radius: 999px; border: 0; background: {{enBg}}; font: 600 {{body}} 'Instrument Sans', sans-serif; color: #111111; cursor: pointer">English</button>
+        <button onClick="{{setFr}}" aria-pressed="{{frPressed}}" style="flex: 1; height: 42px; border-radius: 999px; border: 0; background: {{frBg}}; font: 600 {{body}} 'Instrument Sans', sans-serif; color: #111111; cursor: pointer">Français</button>
+      </div>
+      <span style="font: 400 {{small}} 'Instrument Sans', sans-serif; color: #5E5D58">{{t.langNote}}</span>
+    </section>
+
+    <section style="padding: 6px 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column">
+      <h2 style="margin: 0; padding: 10px 0 4px; font: 700 {{h2}} Archivo, sans-serif">{{t.access}}</h2>
+      <sc-for list="{{a11y}}" as="s" hint-placeholder-count="3">
+        <button onClick="{{s.toggle}}" role="switch" aria-checked="{{s.checked}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border: 0; border-bottom: {{s.line}}; background: transparent; text-align: left; cursor: pointer; color: #111111">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 {{body}} 'Instrument Sans', sans-serif">{{s.title}}</span><span style="font: 400 {{small}} 'Instrument Sans', sans-serif; color: #5E5D58">{{s.desc}}</span></span>
+          <span style="width: 46px; height: 28px; border-radius: 999px; background: {{s.track}}; position: relative; flex-shrink: 0"><span style="position: absolute; top: 3px; left: {{s.knob}}; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF"></span></span>
+        </button>
+      </sc-for>
+      <span style="padding: 10px 0 12px; font: 400 {{small}} 'Instrument Sans', sans-serif; color: #5E5D58">{{t.sr}}</span>
+    </section>
+
+    <section style="padding: 6px 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column">
+      <h2 style="margin: 0; padding: 10px 0 4px; font: 700 {{h2}} Archivo, sans-serif">{{t.notify}}</h2>
+      <sc-for list="{{alerts}}" as="s" hint-placeholder-count="4">
+        <button onClick="{{s.toggle}}" role="switch" aria-checked="{{s.checked}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border: 0; border-bottom: {{s.line}}; background: transparent; text-align: left; cursor: pointer; color: #111111">
+          <span style="flex: 1; font: 600 {{body}} 'Instrument Sans', sans-serif">{{s.title}}</span>
+          <span style="width: 46px; height: 28px; border-radius: 999px; background: {{s.track}}; position: relative; flex-shrink: 0"><span style="position: absolute; top: 3px; left: {{s.knob}}; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF"></span></span>
+        </button>
+      </sc-for>
+    </section>
+
+    <section style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font: 700 {{h2}} Archivo, sans-serif">{{t.pay}}</h2>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; border: 2px solid #111111">
+        <span style="width: 44px; height: 30px; border-radius: 6px; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 10px Archivo, sans-serif">VISA</span>
+        <span style="flex: 1; display: flex; flex-direction: column"><span style="font: 600 {{body}} 'Instrument Sans', sans-serif">•••• 4417</span><span style="font: 400 {{small}} 'Instrument Sans', sans-serif; color: #5E5D58">{{t.default}}</span></span>
+        <span style="font: 600 {{small}} 'Instrument Sans', sans-serif">✓</span>
+      </div>
+      <button style="height: 44px; border-radius: 14px; border: 1.5px dashed #B5B2A8; background: transparent; font: 600 {{body}} 'Instrument Sans', sans-serif; color: #111111">{{t.addCard}}</button>
+      <div style="display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 16px; background: #F3F2EE">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.5"/><path d="M14 10h4M14 14h3"/></svg>
+        <span style="flex: 1; font: 500 {{small}} 'Instrument Sans', sans-serif">{{t.id}}</span>
+        <span style="height: 24px; padding: 0 9px; border-radius: 999px; background: #C8FF3D; display: flex; align-items: center; font: 600 11px 'Instrument Sans', sans-serif">{{t.verified}}</span>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { lang: 'en', a: { big: false, motion: false, contrast: false }, n: { replies: true, locked: true, opening: true, deals: false } };
+  }
+  renderVals() {
+    const fr = this.state.lang === 'fr';
+    const t = fr ? {
+      back: 'Retour', title: 'Réglages', language: 'Langue', langNote: 'Toute l’app, les reçus et les messages des promoteurs passent en français.',
+      access: 'Accessibilité', sr: 'Chaque bouton est étiqueté pour VoiceOver et TalkBack.', notify: 'Notifications', pay: 'Paiement et identité',
+      default: 'Carte par défaut pour les dépôts et l’addition', addCard: '+ Ajouter une carte', id: 'Pièce d’identité vérifiée · 19+', verified: 'Vérifiée'
+    } : {
+      back: 'Back', title: 'Settings', language: 'Language', langNote: 'Switches the whole app, receipts and promoter messages.',
+      access: 'Accessibility', sr: 'Every button is labelled for VoiceOver and TalkBack.', notify: 'Notifications', pay: 'Payment & ID',
+      default: 'Default card for deposits and your tab', addCard: '+ Add a card', id: 'Government ID verified · 19+', verified: 'Verified'
+    };
+    const A = this.state.a;
+    const N = this.state.n;
+    const big = A.big;
+    const sw = (on) => ({ track: on ? '#111111' : '#D9D6CC', knob: on ? '21px' : '3px', checked: on ? 'true' : 'false' });
+    const a11y = [
+      ['big', fr ? 'Texte plus grand' : 'Larger text', fr ? 'Agrandit le texte partout' : 'Bumps text size across the app'],
+      ['motion', fr ? 'Réduire les animations' : 'Reduce motion', fr ? 'Moins d’effets de mouvement' : 'Fewer moving effects'],
+      ['contrast', fr ? 'Contraste élevé' : 'High contrast', fr ? 'Bordures et textes plus marqués' : 'Stronger borders and text']
+    ];
+    const alerts = [
+      ['replies', fr ? 'Réponses des promoteurs' : 'Promoter replies'],
+      ['locked', fr ? 'Table confirmée et rappels' : 'Table locked & reminders'],
+      ['opening', fr ? 'Tables qui se libèrent' : 'Tables opening up'],
+      ['deals', fr ? 'Offres de dernière minute' : 'Last-minute deals']
+    ];
+    return {
+      t: t,
+      h1: big ? '32px' : '28px', h2: big ? '21px' : '18px', body: big ? '17px' : '14px', small: big ? '14px' : '12px',
+      enBg: fr ? 'transparent' : '#FFFFFF', frBg: fr ? '#FFFFFF' : 'transparent', enPressed: fr ? 'false' : 'true', frPressed: fr ? 'true' : 'false',
+      setEn: () => this.setState({ lang: 'en' }), setFr: () => this.setState({ lang: 'fr' }),
+      a11y: a11y.map(([id, title, desc], i) => Object.assign({ title: title, desc: desc, line: i < a11y.length - 1 ? '1px solid #EEECE6' : '0', toggle: () => this.setState({ a: Object.assign({}, A, { [id]: !A[id] }) }) }, sw(A[id]))),
+      alerts: alerts.map(([id, title], i) => Object.assign({ title: title, line: i < alerts.length - 1 ? '1px solid #EEECE6' : '0', toggle: () => this.setState({ n: Object.assign({}, N, { [id]: !N[id] }) }) }, sw(N[id])))
+    };
+  }
+}
+</script>
+</body>
+</html>

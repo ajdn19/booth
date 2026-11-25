@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Owner app — Fraud and safety review</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column; padding-bottom: 30px">
+  <div style="padding: 52px 20px 14px; display: flex; align-items: center; gap: 12px">
+    <a href="OwnerApp.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+    <span style="display: flex; flex-direction: column"><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #5E5D58">{{flagCount}}</span><span style="font: 800 24px Archivo, sans-serif; letter-spacing: -0.03em">Fraud &amp; safety</span></span>
+  </div>
+
+  <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{flags}}" as="f" hint-placeholder-count="3">
+      <div style="padding: 16px; border-radius: 22px; background: #FFFFFF; border: {{f.border}}; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: center; gap: 10px">
+          <span style="width: 36px; height: 36px; border-radius: 12px; background: {{f.iconBg}}; color: {{f.iconFg}}; display: flex; align-items: center; justify-content: center; font: 800 16px Archivo, sans-serif; flex-shrink: 0">!</span>
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 600 15px 'Instrument Sans', sans-serif">{{f.title}}</span><span style="font: 500 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{f.meta}}</span></span>
+          <span style="height: 24px; padding: 0 9px; border-radius: 999px; background: {{f.riskBg}}; color: {{f.riskFg}}; display: flex; align-items: center; font: 700 11px 'Instrument Sans', sans-serif">{{f.risk}}</span>
+        </div>
+        <span style="font: 400 13px/1.4 'Instrument Sans', sans-serif; color: #333331">{{f.detail}}</span>
+        <sc-if value="{{f.open}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; gap: 8px">
+            <button onClick="{{f.decline}}" style="flex: 1; height: 40px; border-radius: 999px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #111111; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">{{f.noLabel}}</button>
+            <button onClick="{{f.approve}}" style="flex: 1; height: 40px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">{{f.yesLabel}}</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{f.done}}" hint-placeholder-val="{{ false }}"><span style="font: 600 13px 'Instrument Sans', sans-serif">{{f.doneText}}</span></sc-if>
+      </div>
+    </sc-for>
+
+    <section style="padding: 6px 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column">
+      <h2 style="margin: 0; padding: 10px 0 4px; font: 700 18px Archivo, sans-serif">Protection rules</h2>
+      <sc-for list="{{rules}}" as="r" hint-placeholder-count="4">
+        <button onClick="{{r.toggle}}" role="switch" aria-checked="{{r.checked}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border: 0; border-bottom: {{r.line}}; background: transparent; text-align: left; cursor: pointer; color: #111111">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px 'Instrument Sans', sans-serif">{{r.title}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{r.desc}}</span></span>
+          <span style="width: 46px; height: 28px; border-radius: 999px; background: {{r.track}}; position: relative; flex-shrink: 0"><span style="position: absolute; top: 3px; left: {{r.knob}}; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF"></span></span>
+        </button>
+      </sc-for>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1030}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { f: {}, r: { card: true, id: true, bulk: true, verify: true } };
+  }
+  renderVals() {
+    const flags = [
+      { id: 'bulk', title: '5 tables, 1 card, 9 minutes', meta: 'Sat Dec 5 · new account', risk: 'HIGH', detail: 'Same card booked 5 booths across two nights with different names. Looks like resale. Tables are held, not confirmed.', yes: 'Allow', no: 'Cancel all 5', okText: 'Allowed · tables confirmed', noText: 'Cancelled · card blocked on Booth' },
+      { id: 'id', title: '$4,000 DJ side, ID not verified', meta: 'Sat Nov 28 · Tay N.’s guest', risk: 'MEDIUM', detail: 'Over your $1,500 ID threshold. We asked the guest to scan their ID; they have 2 hours before the hold drops.', yes: 'Approve anyway', no: 'Require ID', okText: 'Approved by you', noText: 'Waiting for ID scan' },
+      { id: 'geo', title: 'Card country doesn’t match', meta: 'Fri Nov 27 · Booth B2', risk: 'LOW', detail: 'Card from outside Canada, but the guest passed bank verification and has 3 past bookings.', yes: 'Approve', no: 'Decline', okText: 'Approved', noText: 'Declined · deposit refunded' }
+    ];
+    const F = this.state.f;
+    const R = this.state.r;
+    const risk = { HIGH: ['#111111', '#C8FF3D'], MEDIUM: ['#EEECE6', '#111111'], LOW: ['#F3F2EE', '#5E5D58'] };
+    const rules = [
+      ['card', 'Card on file for every table', 'No booking without a saved, verified card'],
+      ['verify', 'Bank verification on deposits', 'Extra check by the card issuer before charging'],
+      ['id', 'ID check over $1,500', 'Guests scan government ID before the table locks'],
+      ['bulk', 'Flag bulk bookings', '3+ tables from one card or device in an hour']
+    ];
+    const open = flags.filter((f) => !F[f.id]).length;
+    return {
+      flagCount: open + ' need your review',
+      flags: flags.map((f) => {
+        const st = F[f.id];
+        return {
+          title: f.title, meta: f.meta, risk: f.risk, detail: f.detail, yesLabel: f.yes, noLabel: f.no,
+          riskBg: risk[f.risk][0], riskFg: risk[f.risk][1],
+          iconBg: f.risk === 'HIGH' ? '#111111' : '#F3F2EE', iconFg: f.risk === 'HIGH' ? '#C8FF3D' : '#111111',
+          border: f.risk === 'HIGH' && !st ? '2px solid #111111' : '2px solid transparent',
+          open: !st, done: !!st, doneText: st === 'ok' ? f.okText : f.noText,
+          approve: () => this.setState({ f: Object.assign({}, F, { [f.id]: 'ok' }) }),
+          decline: () => this.setState({ f: Object.assign({}, F, { [f.id]: 'no' }) })
+        };
+      }),
+      rules: rules.map(([id, title, desc], i) => ({ title: title, desc: desc, line: i < rules.length - 1 ? '1px solid #EEECE6' : '0', checked: R[id] ? 'true' : 'false', track: R[id] ? '#111111' : '#D9D6CC', knob: R[id] ? '21px' : '3px', toggle: () => this.setState({ r: Object.assign({}, R, { [id]: !R[id] }) }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

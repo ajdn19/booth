@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tonight — just opened and last-minute deals</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #111111; color: #FFFFFF; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 14px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <a href="Main.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #2A2A28; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+      <span style="display: flex; align-items: center; gap: 6px; font: 600 12px 'Instrument Sans', sans-serif; color: #CFCDC6"><span style="width: 7px; height: 7px; border-radius: 50%; background: #C8FF3D"></span>Sat Nov 28 · 10:14pm</span>
+    </div>
+    <h1 style="margin: 0; font: 800 34px/1 Archivo, sans-serif; letter-spacing: -0.04em">Tonight.</h1>
+    <span style="font: 400 14px 'Instrument Sans', sans-serif; color: #CFCDC6">Tables that just opened, and late deals from clubs filling their last spots.</span>
+  </div>
+
+  <div style="flex: 1; padding: 4px 16px 0; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+    <span style="padding: 0 4px; font: 600 12px 'Instrument Sans', sans-serif; letter-spacing: 0.06em; color: #C8FF3D">JUST OPENED</span>
+    <div style="padding: 14px; border-radius: 20px; background: #FFFFFF; color: #111111; display: flex; align-items: center; gap: 12px">
+      <span style="width: 44px; height: 44px; border-radius: 14px; background: #C8FF3D; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg></span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px 'Instrument Sans', sans-serif">Main VIP opened at Toybox</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">2 min ago · up to 10 · $1,600</span></span>
+      <a href="Club.dc.html" style="height: 36px; padding: 0 14px; border-radius: 999px; background: #111111; color: #FFFFFF; display: flex; align-items: center; font: 600 12px 'Instrument Sans', sans-serif">Grab it</a>
+    </div>
+    <div style="padding: 14px; border-radius: 20px; background: #2A2A28; display: flex; align-items: center; gap: 12px">
+      <span style="width: 44px; height: 44px; border-radius: 14px; background: #3A3A36; display: flex; align-items: center; justify-content: center; font: 800 11px Archivo, sans-serif">REBEL</span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px 'Instrument Sans', sans-serif">Booth opened at Rebel</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #CFCDC6">You're #1 on the waitlist · claim in 14:32</span></span>
+      <a href="Waitlist.dc.html" style="height: 36px; padding: 0 14px; border-radius: 999px; background: #C8FF3D; color: #111111; display: flex; align-items: center; font: 600 12px 'Instrument Sans', sans-serif">Claim</a>
+    </div>
+
+    <span style="padding: 8px 4px 0; font: 600 12px 'Instrument Sans', sans-serif; letter-spacing: 0.06em; color: #C8FF3D">LAST-MINUTE DEALS · AFTER 10PM</span>
+    <sc-for list="{{deals}}" as="d" hint-placeholder-count="3">
+      <div style="padding: 14px; border-radius: 20px; background: #FFFFFF; color: #111111; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start">
+          <span style="display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px 'Instrument Sans', sans-serif">{{d.club}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{d.table}}</span></span>
+          <span style="display: flex; flex-direction: column; align-items: flex-end"><span style="font: 800 22px Archivo, sans-serif">{{d.price}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58; text-decoration: line-through">{{d.was}}</span></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <span style="height: 26px; padding: 0 10px; border-radius: 999px; background: #111111; color: #C8FF3D; display: flex; align-items: center; font: 700 11px 'Instrument Sans', sans-serif">{{d.off}} · ends {{d.ends}}</span>
+          <a href="Checkout.dc.html" style="font: 600 13px 'Instrument Sans', sans-serif; text-decoration: underline">Book now</a>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="padding: 12px 20px 28px">
+    <button onClick="{{toggle}}" role="switch" aria-checked="{{checked}}" style="width: 100%; height: 56px; padding: 0 8px 0 20px; border-radius: 999px; border: 0; background: #2A2A28; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between; font: 600 15px 'Instrument Sans', sans-serif; cursor: pointer">
+      <span>Alert me when tables open tonight</span>
+      <span style="width: 52px; height: 32px; border-radius: 999px; background: {{track}}; position: relative"><span style="position: absolute; top: 4px; left: {{knob}}; width: 24px; height: 24px; border-radius: 50%; background: #111111"></span></span>
+    </button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { on: true };
+  }
+  renderVals() {
+    const on = this.state.on;
+    return {
+      deals: [
+        { club: '44 Toronto', table: 'Booth B4 · up to 6', price: '$675', was: '$900', off: '25% off', ends: '11:30pm' },
+        { club: 'EFS', table: 'Booth · up to 6', price: '$600', was: '$800', off: '25% off', ends: '11pm' }
+      ],
+      checked: on ? 'true' : 'false', track: on ? '#C8FF3D' : '#5B5A55', knob: on ? '24px' : '4px',
+      toggle: () => this.setState({ on: !on })
+    };
+  }
+}
+</script>
+</body>
+</html>

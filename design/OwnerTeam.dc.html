@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Owner app — Team</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: 'Instrument Sans', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 12px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <a href="OwnerApp.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #F3F2EE; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+      <h1 style="margin: 0; font: 700 30px Archivo, sans-serif; letter-spacing: -0.035em">Your team</h1>
+    </div>
+    <div style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: #F3F2EE">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+        <button onClick="{{t.pick}}" style="flex: 1; height: 40px; border-radius: 999px; border: 0; background: {{t.bg}}; box-shadow: {{t.shadow}}; font: 600 13px 'Instrument Sans', sans-serif; color: #111111; cursor: pointer">{{t.label}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="flex: 1; padding: 6px 20px 0; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+    <sc-if value="{{isBoard}}" hint-placeholder-val="{{ true }}">
+      <sc-for list="{{promoters}}" as="p" hint-placeholder-count="4">
+        <div style="padding: 14px; border-radius: 20px; background: #F3F2EE; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="width: 22px; font: 700 15px Archivo, sans-serif">{{p.rank}}</span>
+            <span style="position: relative; width: 40px; height: 40px; border-radius: 50%; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 13px Archivo, sans-serif">{{p.initials}}<span style="position: absolute; right: -1px; bottom: -1px; width: 11px; height: 11px; border-radius: 50%; border: 2px solid #F3F2EE; background: {{p.dot}}"></span></span>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 600 15px 'Instrument Sans', sans-serif">{{p.name}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{p.status}}</span></div>
+            <span style="font: 800 20px Archivo, sans-serif; letter-spacing: -0.03em">{{p.rev}}</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">
+            <span><span style="font-weight: 600; color: #111111">{{p.tables}}</span> tables</span>
+            <span><span style="font-weight: 600; color: #111111">{{p.win}}</span> close rate</span>
+            <span><span style="font-weight: 600; color: #111111">{{p.vs}}</span> of list</span>
+          </div>
+        </div>
+      </sc-for>
+    </sc-if>
+
+    <sc-if value="{{isFeed}}" hint-placeholder-val="{{ false }}">
+      <sc-for list="{{feed}}" as="f" hint-placeholder-count="5">
+        <div style="display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #EEECE6">
+          <span style="width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: {{f.dot}}; flex-shrink: 0"></span>
+          <div style="display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px 'Instrument Sans', sans-serif">{{f.title}}</span><span style="font: 400 13px 'Instrument Sans', sans-serif; color: #5E5D58">{{f.sub}}</span></div>
+        </div>
+      </sc-for>
+    </sc-if>
+
+    <sc-if value="{{isChat}}" hint-placeholder-val="{{ false }}">
+      <span style="align-self: center; font: 500 12px 'Instrument Sans', sans-serif; padding: 4px 10px; border-radius: 999px; background: #F3F2EE">44 Toronto team · you can read and post</span>
+      <sc-for list="{{chat}}" as="m" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; gap: 3px; align-self: {{m.align}}; max-width: 82%; padding: 10px 14px; border-radius: 18px; background: {{m.bg}}; color: {{m.fg}}">
+          <span style="font: 600 12px 'Instrument Sans', sans-serif; opacity: 0.7">{{m.who}}</span>
+          <span style="font: 400 14px/1.4 'Instrument Sans', sans-serif">{{m.text}}</span>
+        </div>
+      </sc-for>
+    </sc-if>
+  </div>
+
+  <div style="padding: 12px 20px 30px; border-top: 1px solid #EEECE6">
+    <button onClick="{{openChat}}" style="width: 100%; height: 54px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font: 600 15px 'Instrument Sans', sans-serif; cursor: pointer">Message the team</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'board' };
+  }
+  renderVals() {
+    const tab = this.state.tab;
+    const tabs = [['board', 'Leaderboard'], ['feed', 'Deal feed'], ['chat', 'Team chat']];
+    const promoters = [
+      { initials: 'DS', name: 'Dev S.', status: 'Online · on the DJ-side 10-top', rev: '$6,400', tables: 3, win: '75%', vs: '97%', on: true },
+      { initials: 'MR', name: 'Maya R.', status: 'Online · in discussion · Booth 4', rev: '$5,200', tables: 3, win: '60%', vs: '95%', on: true },
+      { initials: 'TN', name: 'Tay N.', status: 'Online · 1 deal flagged', rev: '$3,100', tables: 1, win: '50%', vs: '78%', on: true },
+      { initials: 'JK', name: 'Jordan K.', status: 'Away · last active 4 min', rev: '$2,750', tables: 2, win: '67%', vs: '96%', on: false }
+    ];
+    const feed = [
+      { title: 'Jordan K. landed Main VIP 2', sub: '$1,850 · guest picked Jordan · 11:24pm', won: true },
+      { title: 'Dev S. landed Main VIP 1', sub: '$2,000 · at list · 11:02pm', won: true },
+      { title: 'Maya R. in discussion · Booth 4', sub: '$850 on a $750 offer · 10:58pm', won: false },
+      { title: 'Tay N. landed DJ side', sub: '$3,100 · below floor, you approved · 10:40pm', won: true },
+      { title: 'Maya R. landed Booth 2', sub: '$900 · at list · 10:31pm', won: true }
+    ];
+    const chat = [
+      { who: 'Dev S.', text: 'I’m on the DJ-side 10-top, they booked with me in Oct.' },
+      { who: 'Maya R.', text: 'My 4-top booth guests just confirmed, holding B3.' },
+      { who: 'Jordan K.', text: 'My VIP 6-top offered 1,800 — OK to counter 1,850 with a bottle upgrade?' },
+      { who: 'You', text: 'Approved. Keep Main VIP above 1,750 tonight.', mine: true }
+    ];
+    return {
+      tabs: tabs.map(([id, label]) => ({
+        label: label,
+        bg: tab === id ? '#FFFFFF' : 'transparent',
+        shadow: tab === id ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
+        pick: () => this.setState({ tab: id })
+      })),
+      isBoard: tab === 'board', isFeed: tab === 'feed', isChat: tab === 'chat',
+      promoters: promoters.map((p, i) => Object.assign({}, p, { rank: i + 1, dot: p.on ? '#3B7A1A' : '#9C9A92' })),
+      feed: feed.map((f) => ({ title: f.title, sub: f.sub, dot: f.won ? '#3B7A1A' : '#9C9A92' })),
+      chat: chat.map((m) => ({ who: m.who, text: m.text, align: m.mine ? 'flex-end' : 'flex-start', bg: m.mine ? '#111111' : '#F3F2EE', fg: m.mine ? '#FFFFFF' : '#111111' })),
+      openChat: () => this.setState({ tab: 'chat' })
+    };
+  }
+}
+</script>
+</body>
+</html>

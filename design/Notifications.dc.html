@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Notifications</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+.bpop{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) both}
+.bfall{animation:bfall 1.4s ease-out both}
+@keyframes bpop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bfall{0%{opacity:0;translate:0 -40px}100%{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="padding: 52px 20px 12px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <a href="Main.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #F3F2EE; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+      <h1 style="flex: 1; margin: 0; font: 800 28px Archivo, sans-serif; letter-spacing: -0.03em">Notifications</h1>
+      <a href="Settings.dc.html" aria-label="Notification settings" style="width: 44px; height: 44px; border-radius: 50%; background: #F3F2EE; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></a>
+    </div>
+    <div style="display: flex; gap: 6px">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+        <button onClick="{{t.pick}}" style="height: 36px; padding: 0 14px; border-radius: 999px; border: {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: 600 13px 'Instrument Sans', sans-serif; cursor: pointer">{{t.label}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="flex: 1; padding: 0 16px; display: flex; flex-direction: column; overflow: hidden">
+    <sc-for list="{{items}}" as="n" hint-placeholder-count="7">
+      <a href="{{n.href}}" style="display: flex; gap: 12px; padding: 12px 4px; border-bottom: 1px solid #EEECE6">
+        <span style="width: 40px; height: 40px; border-radius: 12px; background: {{n.iconBg}}; color: {{n.iconFg}}; display: flex; align-items: center; justify-content: center; font: 700 12px Archivo, sans-serif; flex-shrink: 0">{{n.icon}}</span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px 'Instrument Sans', sans-serif">{{n.title}}</span><span style="font: 400 13px/1.35 'Instrument Sans', sans-serif; color: #5E5D58">{{n.body}}</span></span>
+        <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px"><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58; white-space: nowrap">{{n.time}}</span><span style="width: 8px; height: 8px; border-radius: 50%; background: {{n.dot}}"></span></span>
+      </a>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'all' };
+  }
+  renderVals() {
+    const all = [
+      { k: 'night', icon: '1h', title: 'Doors in 1 hour', body: '44 Toronto · side entrance · your ride is booked for 11:15', time: '9:30pm', href: 'NightOf.dc.html', unread: true, hot: true },
+      { k: 'chat', icon: 'MR', title: 'Maya replied', body: '"Yes, V2 fits up to 10. Same price."', time: '9:12pm', href: 'CustomerChat.dc.html', unread: true },
+      { k: 'deals', icon: '!', title: 'Main VIP opened at Toybox', body: 'Matches your alert · $1,600 · up to 10', time: '8:58pm', href: 'Tonight.dc.html', unread: true, hot: true },
+      { k: 'night', icon: '✓', title: 'Your table is locked', body: 'Deposit covered by your group. Passes sent to 6 guests.', time: 'Thu', href: 'Pass.dc.html' },
+      { k: 'night', icon: '$', title: 'Raj paid his share', body: '$84.50 · 3 of 6 paid', time: 'Thu', href: 'Split.dc.html' },
+      { k: 'deals', icon: '%', title: 'Late deal: 25% off booths at EFS', body: 'Tonight only, until 11pm', time: 'Fri', href: 'Tonight.dc.html' },
+      { k: 'chat', icon: 'DS', title: 'Dev S. sent an offer', body: 'Rebel mezzanine · $1,100', time: 'Wed', href: 'Confirm.dc.html' }
+    ];
+    const tab = this.state.tab;
+    const list = tab === 'all' ? all : all.filter((n) => n.k === tab);
+    return {
+      tabs: [['all', 'All'], ['night', 'My nights'], ['chat', 'Messages'], ['deals', 'Deals']].map(([id, label]) => ({ label: label, border: id === tab ? '1.5px solid #111111' : '1px solid #E4E2DC', bg: id === tab ? '#111111' : '#FFFFFF', fg: id === tab ? '#FFFFFF' : '#111111', pick: () => this.setState({ tab: id }) })),
+      items: list.map((n) => ({ icon: n.icon, title: n.title, body: n.body, time: n.time, href: n.href, iconBg: n.hot ? '#C8FF3D' : '#111111', iconFg: n.hot ? '#111111' : '#FFFFFF', dot: n.unread ? '#111111' : 'transparent' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

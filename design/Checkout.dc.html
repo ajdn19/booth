@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Checkout — bottles, add-ons and full price</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button,a{transition:transform .16s cubic-bezier(.2,.8,.2,1),background-color .2s,color .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #111111;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; box-sizing: border-box; background: #F3F2EE; color: #111111; font-family: 'Instrument Sans', sans-serif; display: flex; flex-direction: column">
+  <div style="padding: 52px 20px 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <a href="CustomerChat.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></a>
+      <h1 style="margin: 0; font: 800 28px Archivo, sans-serif; letter-spacing: -0.03em">Checkout</h1>
+    </div>
+    <div style="padding: 14px; border-radius: 22px; background: #111111; color: #FFFFFF; display: flex; align-items: center; gap: 12px">
+      <span style="width: 60px; height: 44px; border-radius: 14px; background: #C8FF3D; color: #111111; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0"><span style="font: 700 13px Archivo, sans-serif">V2</span><span style="font: 500 10px 'Instrument Sans', sans-serif">up to 10</span></span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px 'Instrument Sans', sans-serif">44 Toronto · Main VIP</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #CFCDC6">Sat Nov 28 · with Maya R. · agreed $1,850</span></span>
+    </div>
+  </div>
+
+  <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 14px">
+    <section style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><h2 style="margin: 0; font: 700 18px Archivo, sans-serif">Pre-order bottles</h2><a href="Club.dc.html" style="font: 600 12px 'Instrument Sans', sans-serif; text-decoration: underline">Full menu</a></div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="height: 8px; border-radius: 4px; background: #EEECE6; overflow: hidden"><div style="height: 8px; border-radius: 4px; background: #111111; width: {{minPct}}"></div></div>
+        <span style="font: 500 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{minLabel}}</span>
+      </div>
+      <sc-for list="{{bottles}}" as="b" hint-placeholder-count="3">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 40px; height: 40px; border-radius: 12px; background: #F3F2EE; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" aria-hidden="true"><path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3z"/></svg></span>
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 600 14px 'Instrument Sans', sans-serif">{{b.name}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{b.price}}</span></span>
+          <div style="display: flex; align-items: center; gap: 8px">
+            <button onClick="{{b.less}}" aria-label="{{b.lessLabel}}" style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid #E4E2DC; background: #FFFFFF; font: 500 18px 'Instrument Sans', sans-serif; color: #111111">−</button>
+            <span style="min-width: 14px; text-align: center; font: 700 15px Archivo, sans-serif">{{b.qty}}</span>
+            <button onClick="{{b.more}}" aria-label="{{b.moreLabel}}" style="width: 36px; height: 36px; border-radius: 50%; border: 0; background: #111111; font: 500 18px 'Instrument Sans', sans-serif; color: #FFFFFF">+</button>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font: 700 18px Archivo, sans-serif">Make it a moment</h2>
+      <sc-for list="{{addons}}" as="a" hint-placeholder-count="3">
+        <button onClick="{{a.toggle}}" aria-pressed="{{a.pressed}}" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; border: {{a.border}}; background: #FFFFFF; text-align: left; cursor: pointer; color: #111111">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 600 14px 'Instrument Sans', sans-serif">{{a.name}}</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">{{a.desc}}</span></span>
+          <span style="font: 600 14px 'Instrument Sans', sans-serif">{{a.price}}</span>
+          <span style="width: 22px; height: 22px; border-radius: 7px; border: {{a.box}}; background: {{a.boxBg}}; display: flex; align-items: center; justify-content: center; font: 700 13px 'Instrument Sans', sans-serif; color: #C8FF3D">{{a.tick}}</span>
+        </button>
+      </sc-for>
+    </section>
+
+    <section style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 8px; font: 400 14px 'Instrument Sans', sans-serif">
+      <h2 style="margin: 0 0 4px; font: 700 18px Archivo, sans-serif">What you'll actually pay</h2>
+      <div style="display: flex; justify-content: space-between"><span style="color: #5E5D58">Table minimum (agreed)</span><span>{{tableLabel}}</span></div>
+      <div style="display: flex; justify-content: space-between"><span style="color: #5E5D58">Add-ons</span><span>{{addonLabel}}</span></div>
+      <div style="display: flex; justify-content: space-between"><span style="color: #5E5D58">HST 13%</span><span>{{taxLabel}}</span></div>
+      <div style="display: flex; justify-content: space-between"><span style="color: #5E5D58">Gratuity 18%</span><span>{{tipLabel}}</span></div>
+      <div style="display: flex; justify-content: space-between"><span style="color: #5E5D58">Booth booking fee</span><span>$25</span></div>
+      <div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid #EEECE6; font: 800 22px Archivo, sans-serif"><span>Total</span><span>{{totalLabel}}</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 12px; border-radius: 14px; background: #C8FF3D; font: 600 14px 'Instrument Sans', sans-serif"><span>Deposit due today (20%)</span><span>{{depositLabel}}</span></div>
+    </section>
+
+    <section style="padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font: 700 18px Archivo, sans-serif">Before you pay</h2>
+      <div style="display: flex; gap: 10px; font: 400 13px/1.4 'Instrument Sans', sans-serif; color: #333331"><span style="font-weight: 700; color: #111111">✓</span>Free cancellation until Thu Nov 26, 11:59pm.</div>
+      <div style="display: flex; gap: 10px; font: 400 13px/1.4 'Instrument Sans', sans-serif; color: #333331"><span style="font-weight: 700; color: #111111">✓</span>After that the deposit is non-refundable. Arriving after 12:30am counts as a no-show and the table may be released.</div>
+      <div style="display: flex; gap: 10px; font: 400 13px/1.4 'Instrument Sans', sans-serif; color: #333331"><span style="font-weight: 700; color: #111111">✓</span>Everyone at the table must be 19+ with ID. You're <span style="font-weight: 600; color: #111111">ID verified</span>.</div>
+    </section>
+    <section style="margin: 14px 0 0; padding: 16px; border-radius: 22px; background: #FFFFFF; display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font: 700 18px Archivo, sans-serif">How do you want to pay?</h2>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: #F3F2EE">
+        <span style="width: 44px; height: 30px; border-radius: 6px; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 10px Archivo, sans-serif">VISA</span>
+        <span style="flex: 1; display: flex; flex-direction: column"><span style="font: 600 14px 'Instrument Sans', sans-serif">Card on file · •••• 4417</span><span style="font: 400 12px 'Instrument Sans', sans-serif; color: #5E5D58">Required for every table · covers bottles you add on the night</span></span>
+        <a href="Settings.dc.html" style="font: 600 12px 'Instrument Sans', sans-serif; text-decoration: underline">Change</a>
+      </div>
+      <sc-for list="{{payOpts}}" as="o" hint-placeholder-count="2">
+        <button onClick="{{o.pick}}" role="radio" aria-checked="{{o.checked}}" style="display: flex; align-items: flex-start; gap: 12px; padding: 14px; border-radius: 16px; border: {{o.border}}; background: #FFFFFF; text-align: left; cursor: pointer; color: #111111">
+          <span style="width: 22px; height: 22px; border-radius: 50%; border: {{o.radio}}; box-sizing: border-box; flex-shrink: 0; margin-top: 1px"></span>
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span style="display: flex; justify-content: space-between; font: 600 14px 'Instrument Sans', sans-serif"><span>{{o.title}}</span><span>{{o.now}}</span></span><span style="font: 400 12px/1.4 'Instrument Sans', sans-serif; color: #5E5D58">{{o.desc}}</span></span>
+        </button>
+      </sc-for>
+    </section>
+  </div>
+
+  <div style="padding: 16px 16px 30px; display: flex; flex-direction: column; gap: 10px">
+    <a href="Split.dc.html" style="height: 56px; border-radius: 999px; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 600 16px 'Instrument Sans', sans-serif">Split with your group</a>
+    <a href="Booked.dc.html" style="height: 52px; border-radius: 999px; border: 1.5px solid #111111; display: flex; align-items: center; justify-content: center; font: 600 15px 'Instrument Sans', sans-serif">{{payCta}}</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { qty: { gg: 2, dj: 1, mo: 0 }, add: { sparkler: true, cake: false, photo: false }, pay: 'deposit' };
+  }
+  renderVals() {
+    const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
+    const min = 1850;
+    const bottles = [['gg', 'Grey Goose 750ml', 395], ['dj', 'Don Julio 1942', 750], ['mo', 'Moët Impérial', 350]];
+    const addons = [['sparkler', 'Sparkler show', 'Bottles arrive with sparklers + sign', 75], ['cake', 'Birthday cake', '6-inch cake from the kitchen', 60], ['photo', 'Table photographer', '20 min, photos sent next day', 120]];
+    const q = this.state.qty;
+    const a = this.state.add;
+    const bottleSum = bottles.reduce((s, b) => s + q[b[0]] * b[2], 0);
+    const addSum = addons.reduce((s, x) => s + (a[x[0]] ? x[3] : 0), 0);
+    const table = Math.max(min, bottleSum);
+    const tax = (table + addSum) * 0.13;
+    const tip = table * 0.18;
+    const total = table + addSum + tax + tip + 25;
+    const setQ = (id, d) => this.setState({ qty: Object.assign({}, q, { [id]: Math.max(0, q[id] + d) }) });
+    const pay = this.state.pay;
+    const opts = [
+      ['deposit', 'Pay a deposit now', fmt(total * 0.2), 'Locks the table today. The rest, plus anything you add, is charged to your card at close.'],
+      ['close', 'Hold my card, pay at close', '$0 now', 'We hold ' + fmt(total * 0.2) + ' on your card. Everything is charged once at the end of the night.']
+    ];
+    return {
+      payOpts: opts.map(([id, title, now, desc]) => ({ title: title, now: now, desc: desc, checked: id === pay ? 'true' : 'false', border: id === pay ? '2px solid #111111' : '1px solid #E4E2DC', radio: id === pay ? '7px solid #111111' : '1.5px solid #B5B2A8', pick: () => this.setState({ pay: id }) })),
+      payCta: pay === 'deposit' ? 'Pay deposit · ' + fmt(total * 0.2) : 'Hold card · pay at close',
+      minPct: Math.min(100, Math.round((bottleSum / min) * 100)) + '%',
+      minLabel: bottleSum >= min ? 'Minimum covered by your pre-order' : fmt(bottleSum) + ' pre-ordered · ' + fmt(min - bottleSum) + ' left to spend on the night',
+      bottles: bottles.map((b) => ({ name: b[1], price: fmt(b[2]), qty: q[b[0]], less: () => setQ(b[0], -1), more: () => setQ(b[0], 1), lessLabel: 'Remove ' + b[1], moreLabel: 'Add ' + b[1] })),
+      addons: addons.map((x) => {
+        const on = !!a[x[0]];
+        return { name: x[1], desc: x[2], price: '+' + fmt(x[3]), pressed: on ? 'true' : 'false', border: on ? '2px solid #111111' : '1px solid #E4E2DC', box: on ? '0' : '1.5px solid #B5B2A8', boxBg: on ? '#111111' : '#FFFFFF', tick: on ? '✓' : '', toggle: () => this.setState({ add: Object.assign({}, a, { [x[0]]: !on }) }) };
+      }),
+      tableLabel: fmt(table), addonLabel: fmt(addSum), taxLabel: fmt(tax), tipLabel: fmt(tip),
+      totalLabel: fmt(total), depositLabel: fmt(total * 0.2)
+    };
+  }
+}
+</script>
+</body>
+</html>
